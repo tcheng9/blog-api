@@ -17,22 +17,22 @@ router.get('/:id', function (req, res,) {
     res.send(req.params.id);
 });
 
-router.post('/', async (req, res) => {
+router.post('/', async function(req, res){
     const post = new Post({
         title: req.body.title,
-        body: req.body.body,
+        text: req.body.text,
         comments: req.body.comments,
         publish_status: req.body.publish_status,
-     })
+     });
 
+    
      try{
         const newPost = await post.save();
-        res.status(201).json(newPost);
-     } catch(err){
-        res.status(400).json({messsage: err.message});
+        res.json(newPost);
+     } catch (err){
+        res.json({messsage: err.message});
      }
 })
-
 router.put('/', (req, res) => {
     return res.send('Received a PUT HTTP method');
 });

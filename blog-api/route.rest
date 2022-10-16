@@ -7,12 +7,12 @@ GET http://localhost:3000/post/15
 ###
 
 
-POST http://localhost:3000/
+POST http://localhost:3000/post
 Content-Type: application/json
 
 {
     "title": "Title test 2",
-    "body": "Body test 2",
+    "text": "Body test 2",
     "comments": "Comments test 2",
     "publish_status": "false",
 }
