@@ -3,14 +3,21 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-
-
+require("dotenv").config();
+const mongoose = require("mongoose");
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var commentRouter = require('./routes/commentRouter');
 var postRouter = require('./routes/postRouter');
 
 var app = express();
+
+/////////MONGO DB SETUP
+const mongoPw = process.env.MONGOPW;
+const mongoDb = "mongodb+srv://tcheng:" + mongoPw + "@cluster0.c17ee5l.mongodb.net/?retryWrites=true&w=majority";
+mongoose.connect(mongoDb, { useUnifiedTopology: true, useNewUrlParser: true });
+const db = mongoose.connection;
+db.on("error", console.error.bind(console, "mongo connection error"));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -24,8 +31,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/comments', commentRouter);
-app.use('/posts', postRouter)
+app.use('/comment', commentRouter);
+app.use('/post', postRouter)
 
 
 // catch 404 and forward to error handler
