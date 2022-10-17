@@ -23,14 +23,16 @@ router.post('/', async function(req, res){
         text: req.body.text,
         comments: req.body.comments,
         publish_status: req.body.publish_status,
-     });
+     })
 
-    
+    //  console.log(req.body);
+    //  res.send(req.body);
+
      try{
         const newPost = await post.save();
-        res.json(newPost);
+        res.status(201).json(newPost);
      } catch (err){
-        res.json({messsage: err.message});
+        res.status(401).json({messsage: err.message});
      }
 })
 router.put('/', (req, res) => {
