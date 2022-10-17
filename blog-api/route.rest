@@ -1,10 +1,10 @@
-# GET http://localhost:3000/post
+GET http://localhost:3000/post
 
-# ###
+###
 
-# GET http://localhost:3000/post/15
+GET http://localhost:3000/post/634c4f14d0b5311d61235532
 
-# ###
+###
 
 
 POST http://localhost:3000/post
@@ -15,4 +15,19 @@ Content-Type: application/json
     "text": "Body test 3",
     "comments": "Comments test 3",
     "publish_status": "false"
+}
+###
+
+DELETE http://localhost:3000/post/634c4f14d0b5311d61235532
+
+###
+
+PATCH http://localhost:3000/post/634cbc5c8663cf5eb8e427c7
+Content-Type: application/json
+
+{
+    "title": "Patch test 1",
+    "text": "Patch text 1",
+    "comments": "Patch comments 1",
+    "publish_status": "Patch publish_status 1"
 }
