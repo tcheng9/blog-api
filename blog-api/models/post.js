@@ -8,7 +8,7 @@ const PostSchema = new Schema(
         comments: {type: String},
         // comments: {type: Schema.Types.ObjectId, ref: "comment", required: true},
         // timestamp: Date.now(),
-        publish_status: {type: String}
+        publish_status: {type: Boolean}
     }
 )
 
