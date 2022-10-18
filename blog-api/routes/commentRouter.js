@@ -1,39 +1,83 @@
 var express = require('express');
 var router = express.Router();
-
+var Comment = require('../models/comment');
+var async = require('async');
 
 /* GET comment home page */
-router.get('/', function(req, res, next) {
-    res.send('you are on comments page');
+router.get('/', async function (req, res, next) {
+    try{
+        const comments = await Comment.find();
+        res.json(comments);
+    } catch (err){
+        res.status(500).json({message: err.message});
+    }
+});
+
+/* GET 1 comment home page */
+router.get('/:id', getComment, function (req, res,) {
+    res.send(res.comment.text);
+});
+
+/* POST comment */
+router.post('/', async function (req, res) {
+    const comment = new Comment({
+        text: req.body.text,
+        email: req.body.email
+    })
+
+    try{
+        const newComment = await comment.save();
+        res.status(201).json(newComment);
+    } catch (err){
+        res.status(401).json({message: err.message});
+    }
 })
 
-router.post('/', (req, res) => {
-    return res.send('Received a POST HTTP method');
+//Udate a comment 
+
+router.patch('/:id', getComment, async (req, res, next) => {
+    if(req.body.text != null){
+        res.comment.text = req.body.text;
+    }
+
+    if (req.body.email != null){
+        res.comment.email = req.body.email;
+    }
+
+    try {
+        const updatedComment = await res.comment.save();
+        res.json(updatedComment);
+    } catch (err) {
+        res.status(400).json({message: err.message});
+    }
 })
 
-router.put('/', (req, res, next) => {
-    return res.send('Received a PUT HTTP method');
+//Delete a comment
+
+router.delete('/:id', getComment, async (req, res, next) => {
+    try {
+        await res.comment.remove();
+        res.json({message: "Deleted comment"});
+    } catch (err){
+        res.status(500).json({message: err.message});
+    }
 })
 
-router.delete('/', (req, res) => {
-    return res.send('Received a DELETE HTTP method');
-})
 
-// app.get('/', (req, res) => {
-//     return res.send('Received a GET HTTP method');
-//   });
-  
-//   app.post('/', (req, res) => {
-//     return res.send('Received a POST HTTP method');
-//   });
-  
-//   app.put('/', (req, res) => {
-//     return res.send('Received a PUT HTTP method');
-//   });
-  
-//   app.delete('/', (req, res) => {
-//     return res.send('Received a DELETE HTTP method');
-//   });
-  
+async function getComment(req, res,next){
+    let comment;
+
+    try{
+        comment = await Comment.findById(req.params.id);
+        if (comment == null){
+            return res.status(404).json({message: "cannot find comment"})
+        }
+    } catch (err){
+        return res.status(500).json({message: err.message});
+    }
+    res.comment = comment;
+    next();
+}
+
 
 module.exports = router;

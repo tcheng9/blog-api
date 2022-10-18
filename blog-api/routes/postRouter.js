@@ -13,10 +13,12 @@ router.get('/', async function(req, res, next){
     }
 });
 
+/* GET ONE POST ID */
 router.get('/:id', getPost, function (req, res,) {
     res.send(res.post.title);
 });
 
+/* POST - (SAVE AN POST TO DB) */
 router.post('/', async function(req, res){
     const post = new Post({
         title: req.body.title,
@@ -35,6 +37,8 @@ router.post('/', async function(req, res){
         res.status(401).json({messsage: err.message});
      }
 })
+
+/* UPDATE A POST*/
 router.patch('/:id', getPost, async (req, res) => {
     if(req.body.title != null){
         res.post.title = req.body.title
@@ -60,6 +64,8 @@ router.patch('/:id', getPost, async (req, res) => {
     }
 });
 
+
+/* DELETE A POST */
 router.delete('/:id', getPost, async (req, res) => {
     try{
         await res.post.remove();
@@ -69,6 +75,7 @@ router.delete('/:id', getPost, async (req, res) => {
     }
 })
 
+/* FUNCTION TO GET POST BY ID */
 async function getPost(req, res, next){
     let post
 

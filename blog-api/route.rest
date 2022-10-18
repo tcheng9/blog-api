@@ -31,3 +31,31 @@ Content-Type: application/json
     "comments": "Patch comments 1",
     "publish_status": "Patch publish_status 1"
 }
+
+###
+
+GET http://localhost:3000/comment
+
+###
+GET http://localhost:3000/comment/634ee71fbd040e68cbd4ec52
+
+###
+POST http://localhost:3000/comment
+Content-Type: application/json
+
+{
+    "text": "test1",
+    "email": "test@gmail.com"
+}
+
+###
+PATCH http://localhost:3000/comment/634ee71fbd040e68cbd4ec52
+Content-Type: application/json
+
+{
+    "text": "updated test1",
+    "email": "updatedtest@gmail.com"
+}
+
+###
+DELETE http://localhost:3000/comment/634ee71fbd040e68cbd4ec52

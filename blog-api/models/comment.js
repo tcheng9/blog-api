@@ -3,7 +3,9 @@ const Schema = mongoose.Schema;
 
 const CommentSchema = new Schema(
     {
-        body: {type: String},
+        text: {type: String},
         email: {type: String},
     }
 )
+
+module.exports = mongoose.model('comment', CommentSchema);
