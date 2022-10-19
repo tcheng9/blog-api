@@ -5,6 +5,7 @@ const CommentSchema = new Schema(
     {
         text: {type: String},
         email: {type: String},
+        postId: {type: Schema.Types.ObjectId, ref: 'post'},
     }
 )
 

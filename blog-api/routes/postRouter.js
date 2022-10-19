@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var Post = require('../models/post');
+var Comment = require('../models/comment');
 var async = require('async');
 
 /* GET home page */
@@ -14,9 +15,9 @@ router.get('/', async function(req, res, next){
 });
 
 /* GET ONE POST ID */
-router.get('/:id', getPost, function (req, res,) {
-    res.send(res.post.title);
-});
+// router.get('/:id', getPost, function (req, res,) {
+//     res.send(res.post.title);
+// });
 
 /* POST - (SAVE AN POST TO DB) */
 router.post('/', async function(req, res){
@@ -75,6 +76,21 @@ router.delete('/:id', getPost, async (req, res) => {
     }
 })
 
+router.get('/:id', async(req, res) => {
+    let comment
+    let post 
+    Post.findById(req.params.id).then(post => {
+        
+        Comment.find({postId: req.params.id}).then(comments => {
+            
+            res.json({post: post, comments: comments});
+        })
+    })
+    
+  
+})
+
+
 /* FUNCTION TO GET POST BY ID */
 async function getPost(req, res, next){
     let post
@@ -91,5 +107,7 @@ async function getPost(req, res, next){
     res.post = post
     next();
 }
+
+
 
 module.exports = router;

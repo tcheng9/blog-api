@@ -11,9 +11,9 @@ POST http://localhost:3000/post
 Content-Type: application/json
 
 {
-    "title": "Title test 5",
-    "text": "Body test 3",
-    "comments": "Comments test 3",
+    "title": "Title test 1",
+    "text": "Body test 1",
+    "comments": "Comments test 1",
     "publish_status": "false"
 }
 ###
@@ -59,3 +59,23 @@ Content-Type: application/json
 
 ###
 DELETE http://localhost:3000/comment/634ee71fbd040e68cbd4ec52
+
+
+###
+POST http://localhost:3000/post/634f31cb4bf85723a546c3f3/comment
+Content-Type: application/json
+
+{
+    "text": "test2",
+    "email": "test2@gmail.com"
+
+    
+}
+
+
+###
+# Testing Post + Comments GET in same function
+
+GET http://localhost:3000/post/634f2fcb4bf85723a546c3e9
+
+###
