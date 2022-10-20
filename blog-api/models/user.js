@@ -5,6 +5,7 @@ const UserSchema = new Schema(
     {
         username: {type: String},
         password: {type: String},
+        author: {type: Boolean},
 
     }
 )
