@@ -4,22 +4,22 @@ var Comment = require('../models/comment');
 var async = require('async');
 const { default: mongoose } = require('mongoose');
 
-router.post('/post/:id/comment', async (req, res) => {
-    const comment = new Comment({
-        text: req.body.text,
-        email: req.body.email,
-        postId: req.params.id,
-    })
+// router.post('/post/:id/comment', async (req, res) => {
+//     const comment = new Comment({
+//         text: req.body.text,
+//         email: req.body.email,
+//         postId: req.params.id,
+//     })
 
     
-    try{
-        const newComment = await comment.save();
-        res.status(201).json(newComment);
-    } catch (err){
-        res.status(401).json({message: err.message});
-    }
+//     try{
+//         const newComment = await comment.save();
+//         res.status(201).json(newComment);
+//     } catch (err){
+//         res.status(401).json({message: err.message});
+//     }
     
-})
+// })
 
 
 /* GET comment home page */

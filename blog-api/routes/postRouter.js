@@ -129,7 +129,22 @@ function authenticateToken(req, res, next){
     
 }
 
+router.post('/:id/comment', async (req, res) => {
+    const comment = new Comment({
+        text: req.body.text,
+        email: req.body.email,
+        postId: req.params.id,
+    })
 
+    
+    try{
+        const newComment = await comment.save();
+        res.status(201).json(newComment);
+    } catch (err){
+        res.status(401).json({message: err.message});
+    }
+    
+})
 
 
 module.exports = router;

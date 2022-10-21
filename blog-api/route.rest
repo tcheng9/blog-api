@@ -1,5 +1,5 @@
 GET http://localhost:3000/post
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3Q1IiwiaWF0IjoxNjY2MzA5MzQ0fQ.AqWn4OAXQgaHodqOenziWNHFsDQqyex-LGFaolv0ZrA"
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3Q1IiwiaWF0IjoxNjY2MzA5MzQ0fQ.AqWn4OAXQgaHodqOenziWNHFsDQqyex-LGFaolv0ZrA
 ###
 
 GET http://localhost:3000/post
@@ -35,13 +35,15 @@ Content-Type: application/json
 }
 
 ###
-
+//Get all comments
 GET http://localhost:3000/comment
 
 ###
-GET http://localhost:3000/comment/634ee71fbd040e68cbd4ec52
+//Get a specific comment
+GET http://localhost:3000/comment/63521488257a4751be19fe9c
 
 ###
+//Save comment to database
 POST http://localhost:3000/comment
 Content-Type: application/json
 
@@ -51,7 +53,8 @@ Content-Type: application/json
 }
 
 ###
-PATCH http://localhost:3000/comment/634ee71fbd040e68cbd4ec52
+//Update an existing comment
+PATCH http://localhost:3000/comment/63521488257a4751be19fe9c
 Content-Type: application/json
 
 {
@@ -60,15 +63,17 @@ Content-Type: application/json
 }
 
 ###
-DELETE http://localhost:3000/comment/634ee71fbd040e68cbd4ec52
+//Delete a comment
+DELETE http://localhost:3000/comment/63521488257a4751be19fe9c
 
 
 ###
+//Save comments to a specific post
 POST http://localhost:3000/post/634f31cb4bf85723a546c3f3/comment
 Content-Type: application/json
 
 {
-    "text": "test2",
+    "text": "testx",
     "email": "test2@gmail.com"
 
     
@@ -78,7 +83,7 @@ Content-Type: application/json
 ###
 # Testing Post + Comments GET in same function
 
-GET http://localhost:3000/post/634f2fcb4bf85723a546c3e9
+GET http://localhost:3000/post/634f31cb4bf85723a546c3f3
 
 ###
 
