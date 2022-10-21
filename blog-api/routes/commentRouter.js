@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var Comment = require('../models/comment');
 var async = require('async');
+const { default: mongoose } = require('mongoose');
 
 router.post('/post/:id/comment', async (req, res) => {
     const comment = new Comment({
@@ -10,6 +11,7 @@ router.post('/post/:id/comment', async (req, res) => {
         postId: req.params.id,
     })
 
+    
     try{
         const newComment = await comment.save();
         res.status(201).json(newComment);
@@ -94,6 +96,21 @@ async function getComment(req, res,next){
     }
     res.comment = comment;
     next();
+}
+
+
+function authenticateToken(req, res, next){
+    const authHeaders = req.headers['authorization']
+    const token = authHeader && authHeader.split(' ')[1];
+    if (token == null) return res.sendStatus(401)
+
+    jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
+        if (err) return res.sendStatus(403);
+
+        req.user = user;
+        next();
+    })
+    
 }
 
 

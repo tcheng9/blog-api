@@ -3,6 +3,7 @@ var router = express.Router();
 var Post = require('../models/post');
 var Comment = require('../models/comment');
 var async = require('async');
+const jwt = require('jsonwebtoken');
 
 /* GET home page */
 router.get('/', async function(req, res, next){
@@ -13,6 +14,11 @@ router.get('/', async function(req, res, next){
         res.status(500).json({message: err.message});
     }
 });
+
+// router.get('/', authenticateToken, async function(req, res, next){
+//         res.json(Post);
+        
+// });
 
 /* GET ONE POST ID */
 // router.get('/:id', getPost, function (req, res,) {
@@ -107,6 +113,7 @@ async function getPost(req, res, next){
     res.post = post
     next();
 }
+
 
 
 

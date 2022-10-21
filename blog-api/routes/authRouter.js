@@ -4,6 +4,7 @@ var User = require('../models/user');
 var async = require('async');
 var bcrypt = require("bcrypt");
 const passport = require('passport');
+const jwt = require('jsonwebtoken');
 
 //Get all users
 router.get('/users', async function(req,res,next){
@@ -51,7 +52,11 @@ router.post('/login', async (req, res) => {
     
     try {
         if(await bcrypt.compare(req.body.password, users[0].password)){
-            res.json('success');
+            const currUser = {username: users[0].username}
+            
+            const accessToken = jwt.sign(currUser, process.env.ACCESS_TOKEN_SECRET);
+            
+            res.json({accessToken: accessToken});
         } else {
             res.json('not successful');
         }
@@ -61,5 +66,22 @@ router.post('/login', async (req, res) => {
     }
 
  )
+
+
+
+function authenticateToken(req, res, next){
+    const authHeaders = req.headers['authorization']
+    const token = authHeader && authHeader.split(' ')[1];
+    if (token == null) return res.sendStatus(401)
+
+    jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
+        if (err) return res.sendStatus(403);
+
+        req.user = user;
+        next();
+    })
+    
+}
+
 
 module.exports = router
