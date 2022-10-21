@@ -17,6 +17,7 @@ const User = require('./models/user');
 const session = require("express-session");
 var authRouter = require('./routes/authRouter')
 const bcrypt = require('bcrypt');
+const cors = require("cors");
 
 var app = express();
 
@@ -70,6 +71,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.urlencoded({ extended: false }));
 
+app.use(cors());
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
