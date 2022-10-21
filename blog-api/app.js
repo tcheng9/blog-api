@@ -80,7 +80,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/', commentRouter);
+// app.use('/', commentRouter);
 app.use('/post', postRouter);
 app.use('/auth', authRouter);
 
