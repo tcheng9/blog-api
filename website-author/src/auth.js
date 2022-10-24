@@ -1,97 +1,74 @@
 import React from 'react';
-import {useEffect, useState} from 'react';
+import {useState} from 'react';
 
 
 function Auth() {
-    const [username, setUsername] = useState({username: ''});
-    const [password, setPassword] = useState({password: ''});
-
-
-    // let handleSignup = async (e) => {
-    //     e.preventDefault();
-    //     const requestOptions = {
-    //         method: 'POST',
-    //         headers: {'Content-Type': 'application/json'},
-    //         body: JSON.stringify({
-    //           username: username,
-    //           password: password,
-    //         })
-    //       };
-
-        
-    //     console.log('submitting sign up form');
-
-    //     fetch('http://localhost:3000/auth/signup', requestOptions)
-    //     .then((response) => response.json())
-    //     .then((json) => {
-    //         console.log(json)}
-             
-    //     ); 
-    // } 
+  
+  const [data, setData] = useState({
+    username: '',
+    password:'',
     
-    
-  const submit = e => {
+  })
+
+  // function signup(){
+  //   console.log('signup button is pressed');
+  // }
+  
+  function handle(e) {
+    const newData = {...data};
+    newData[e.target.id] = e.target.value
+    setData(newData)
+    // console.log(newData);
+  }
+
+  function submit(e){
     e.preventDefault();
     
-  }
-  
-    
-   
-
-
-  function signUp(){
     const requestOptions = {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({
-        username: 'website1',
-        password: 'website1',
-      })
-    };
+      body: JSON.stringify(data)
+    }
+
+    console.log(data);
     
-    fetch("http://localhost:3000/auth/signup", requestOptions)
-      .then((response) => response.json())
-      .then((json) => { console.log(json)});
+
+    fetch('http://localhost:3000/auth/signup', requestOptions)
+    .then((data) => {
+      console.log(data);
+    })
+
+      // .then(data => this.setState({postId: data.id})
   }
 
-  function login(){
-    console.log('login button pressed');
-  }
+  // function login(){
+  //   console.log('login button pressed');
+  // }
 
   return (
      <div>
         <h1> Sign Up </h1>
         <form id = "signup">
           <label htmlFor = "username"> Username: </label> <br/>
-          <input type = "text"  id = "username" name = "username" onChange={(e) => setUsername({text: e.target.value})} /> <br/>
+          <input onChange={(e) => handle(e)} value = {data.username} type = "text"  id = "username" name = "username"/> <br/>
 
           <label htmlFor = "password"> Password: </label> <br/>
-          <input type = "text" id = "password" name = "password"/> <br/>
+          <input onChange={(e) => handle(e)} value = {data.password} type = "text" id = "password" name = "password"/> <br/>
 
-          <button onClick = {signUp()}> Sign Up </button> 
+          <button onClick = {submit}> Sign Up </button> 
         </form>
 
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-
-
-
+{/*      
         <form id = "login">
           <h1> Login Form </h1>
           <label htmlFor = "username"> Username: </label> <br/>
-          <input type = "text"  id = "username" name = "username"/> <br/>
+          <input onChange={(e) => handle(e)} value = {data.username} type = "text"  id = "username" name = "username"/> <br/>
 
           <label htmlFor = "password"> Password: </label> <br/>
-          <input type = "text" id = "password" name = "password"/> <br/>
+          <input onChange={(e) => handle(e)} value = {data.password} type = "text" id = "password" name = "password"/> <br/>
 
           <button onClick = {login()}> Log Up </button> 
-        </form>
-
+        </form> */} 
 
     </div>
   )
