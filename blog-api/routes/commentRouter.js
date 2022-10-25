@@ -3,7 +3,7 @@ var router = express.Router();
 var Comment = require('../models/comment');
 var async = require('async');
 const { default: mongoose } = require('mongoose');
-
+const jwt = require('jsonwebtoken');
 // router.post('/post/:id/comment', async (req, res) => {
 //     const comment = new Comment({
 //         text: req.body.text,
@@ -103,9 +103,9 @@ function authenticateToken(req, res, next){
     const authHeader = req.headers['authorization']
     const token = authHeader && authHeader.split(' ')[1];
     
-
-    
+     
     if (token == null) return res.sendStatus(401).json({message: "token is null"})
+    
 
     jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
         if (err) return res.sendStatus(403);

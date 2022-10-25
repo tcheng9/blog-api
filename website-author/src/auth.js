@@ -1,5 +1,5 @@
 import React from 'react';
-import {useEffect, useState} from 'react';
+import {useState} from 'react';
 
 
 function Auth() {
@@ -68,7 +68,8 @@ function Auth() {
     .then((response) => response.json())
     .then((data) => {
       console.log(data.accessToken);
-      localStorage.setItem('token', JSON.stringify(data.accessToken));
+      // localStorage.setItem('token', JSON.stringify(data.accessToken));
+      localStorage.setItem('token', data.accessToken);
     })
     
     
@@ -78,17 +79,26 @@ function Auth() {
   }
 
   //Trying to make API call with token attached
+  ///
+
+  const [apiData, setApiData] = useState('');
+ 
 
   const apiGet = () => {
+    const token = localStorage.getItem('token');
     
-    fetch('http://localhost:3000/comment', {
-      headers:{Authorization: localStorage.getItem('token')}
-    })
-    .then((response)  => console.log(response.json()))
+    const headers = {
+      method: 'GET',
+      headers: {authorization: `Bearer ${token}`}
+    }
+
+    console.log(headers);
+    fetch('http://localhost:3000/comment', headers)
+    .then((response)  => response.text())
     .then((json) => {
-        console.log(json);
-        
-        // setData(json);
+      
+        setApiData(json);
+        console.log(`${apiData}`);
     })
   } ;
 

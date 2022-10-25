@@ -1,5 +1,6 @@
 GET http://localhost:3000/post
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3Q1IiwiaWF0IjoxNjY2MzA5MzQ0fQ.AqWn4OAXQgaHodqOenziWNHFsDQqyex-LGFaolv0ZrA
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3QxIiwiaWF0IjoxNjY2NzE4NzcwfQ.XFvx46tx7sXeEsv9Zf5Q3xxkPn3VbK2ObvuwjPbeMYk
+
 ###
 
 GET http://localhost:3000/post
@@ -37,6 +38,8 @@ Content-Type: application/json
 ###
 //Get all comments
 GET http://localhost:3000/comment
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3QxIiwiaWF0IjoxNjY2NzE4NzcwfQ.XFvx46tx7sXeEsv9Zf5Q3xxkPn3VbK2ObvuwjPbeMYk
+
 
 ###
 //Get a specific comment
