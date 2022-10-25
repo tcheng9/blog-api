@@ -1,5 +1,5 @@
 import React from 'react';
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 
 
 function Auth() {
@@ -49,12 +49,13 @@ function Auth() {
     const newData = {...loginData};
     newData[e.target.id] = e.target.value
     setLoginData(newData)
-    console.log(newData);
+    // console.log(newData);
   }
 
 
   function loginSubmit(e) {
     e.preventDefault();   
+    console.log(loginData);
 
     const requestOptions = {
       method: 'POST',
@@ -66,7 +67,8 @@ function Auth() {
     fetch('http://localhost:3000/auth/login', requestOptions)
     .then((response) => response.json())
     .then((data) => {
-      console.log(data);
+      console.log(data.accessToken);
+      localStorage.setItem('token', JSON.stringify(data.accessToken));
     })
     
     
@@ -74,6 +76,26 @@ function Auth() {
     //   console.log(data);
     //   })  
   }
+
+  //Trying to make API call with token attached
+
+  const apiGet = () => {
+    
+    fetch('http://localhost:3000/comment', {
+      headers:{Authorization: localStorage.getItem('token')}
+    })
+    .then((response)  => console.log(response.json()))
+    .then((json) => {
+        console.log(json);
+        
+        // setData(json);
+    })
+  } ;
+
+
+  // useEffect(() => {
+  //     apiGet();
+  // }, [])
 
   return (
      <div>
@@ -107,6 +129,17 @@ function Auth() {
 
           <button onClick = {loginSubmit}> Log Up </button> 
         </form>
+
+        <div id = "getComment">
+
+        </div>
+
+      <div>
+        <button onClick = {apiGet}>
+          Get comments
+        </button>
+      </div>
+    
 
     </div>
   )

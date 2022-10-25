@@ -23,7 +23,7 @@ const { default: mongoose } = require('mongoose');
 
 
 /* GET comment home page */
-router.get('/', async function (req, res, next) {
+router.get('/', authenticateToken, async function (req, res, next) {
     try{
         const comments = await Comment.find();
         res.json(comments);
@@ -100,9 +100,12 @@ async function getComment(req, res,next){
 
 
 function authenticateToken(req, res, next){
-    const authHeaders = req.headers['authorization']
+    const authHeader = req.headers['authorization']
     const token = authHeader && authHeader.split(' ')[1];
-    if (token == null) return res.sendStatus(401)
+    
+
+    
+    if (token == null) return res.sendStatus(401).json({message: "token is null"})
 
     jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
         if (err) return res.sendStatus(403);
