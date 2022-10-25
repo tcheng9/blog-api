@@ -10,18 +10,16 @@ function Auth() {
     
   })
 
-  // function signup(){
-  //   console.log('signup button is pressed');
-  // }
+  
   
   function handle(e) {
     const newData = {...data};
     newData[e.target.id] = e.target.value
     setData(newData)
-    // console.log(newData);
+    console.log(newData);
   }
 
-  function submit(e){
+  function signupSubmit(e){
     e.preventDefault();
     
     const requestOptions = {
@@ -38,12 +36,44 @@ function Auth() {
       console.log(data);
     })
 
-      // .then(data => this.setState({postId: data.id})
+     
   }
 
-  // function login(){
-  //   console.log('login button pressed');
-  // }
+  /////////////////
+  const [loginData, setLoginData] = useState({
+    username: '',
+    password:'',
+  })
+
+  function handleLogin(e) {
+    const newData = {...loginData};
+    newData[e.target.id] = e.target.value
+    setLoginData(newData)
+    console.log(newData);
+  }
+
+
+  function loginSubmit(e) {
+    e.preventDefault();   
+
+    const requestOptions = {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(loginData)
+    }
+
+    
+    fetch('http://localhost:3000/auth/login', requestOptions)
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data);
+    })
+    
+    
+    // .then((data) => {
+    //   console.log(data);
+    //   })  
+  }
 
   return (
      <div>
@@ -55,20 +85,28 @@ function Auth() {
           <label htmlFor = "password"> Password: </label> <br/>
           <input onChange={(e) => handle(e)} value = {data.password} type = "text" id = "password" name = "password"/> <br/>
 
-          <button onClick = {submit}> Sign Up </button> 
+          <button onClick = {signupSubmit}> Sign Up </button> 
         </form>
 
-{/*      
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+
+
         <form id = "login">
           <h1> Login Form </h1>
           <label htmlFor = "username"> Username: </label> <br/>
-          <input onChange={(e) => handle(e)} value = {data.username} type = "text"  id = "username" name = "username"/> <br/>
+          <input onChange={(e) => handleLogin(e)} value = {loginData.username} type = "text"  id = "username" name = "username"/> <br/>
 
           <label htmlFor = "password"> Password: </label> <br/>
-          <input onChange={(e) => handle(e)} value = {data.password} type = "text" id = "password" name = "password"/> <br/>
+          <input onChange={(e) => handleLogin(e)} value = {loginData.password} type = "text" id = "password" name = "password"/> <br/>
 
-          <button onClick = {login()}> Log Up </button> 
-        </form> */} 
+          <button onClick = {loginSubmit}> Log Up </button> 
+        </form>
 
     </div>
   )
