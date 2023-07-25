@@ -26,7 +26,7 @@ router.get('/', authenticateToken, async function(req, res, next){
 // });
 
 /* POST - (SAVE AN POST TO DB) */
-router.post('/', async function(req, res){
+router.post('/', authenticateToken, async function(req, res){
     const post = new Post({
         title: req.body.title,
         text: req.body.text,
@@ -46,7 +46,7 @@ router.post('/', async function(req, res){
 })
 
 /* UPDATE A POST*/
-router.patch('/:id', getPost, async (req, res) => {
+router.patch('/:id',authenticateToken,  getPost, async (req, res) => {
     if(req.body.title != null){
         res.post.title = req.body.title
     }
@@ -73,7 +73,7 @@ router.patch('/:id', getPost, async (req, res) => {
 
 
 /* DELETE A POST */
-router.delete('/:id', getPost, async (req, res) => {
+router.delete('/:id',authenticateToken, getPost, async (req, res) => {
     try{
         await res.post.remove();
         res.json({message: "Deleted Post"});
@@ -129,7 +129,7 @@ function authenticateToken(req, res, next){
     
 }
 
-router.post('/:id/comment', async (req, res) => {
+router.post('/:id/comment', authenticateToken, async (req, res) => {
     const comment = new Comment({
         text: req.body.text,
         email: req.body.email,

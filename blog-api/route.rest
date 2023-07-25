@@ -94,8 +94,8 @@ POST http://localhost:3000/auth/signup
 Content-Type: application/json
 
 {
-    "username": "test5",
-    "password": "test5"
+    "username": "test11",
+    "password": "test11"
 }
 
 ###
@@ -103,10 +103,110 @@ POST http://localhost:3000/auth/login
 Content-Type: application/json
 
 {
-    "username": "test5",
-    "password": "test5"
+    "username": "test11",
+    "password": "test11"
     
 }
 
 ###
 GET http://localhost:3000/auth/users
+###
+GET http://localhost:3000/comment
+
+###
+GET http://localhost:3000/comment
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3QxMSIsImlhdCI6MTY4OTI4MjA3NX0.z7wy1gMBvDDMGR9ob74oucY6yYintfK206JWd8YYBzw
+
+################################################################
+#################COMING BACK IN JULY TESTING#################
+################################################################
+#TESTING SIGNUP/LOGIN#
+###
+POST http://localhost:3000/auth/signup
+Content-Type: application/json
+
+{
+    "username": "test11",
+    "password": "test11"
+}
+
+###
+POST http://localhost:3000/auth/login
+Content-Type: application/json
+
+{
+    "username": "test11",
+    "password": "test11"
+    
+}
+###
+################################################################
+#TESTING POSTS (making a post) CRUD FUNCTIONALITY#
+################################################################
+###GETPOST###
+GET http://localhost:3000/post
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3QxMSIsImlhdCI6MTY4OTI4MjA3NX0.z7wy1gMBvDDMGR9ob74oucY6yYintfK206JWd8YYBzw
+
+###CREATE POST###
+POST http://localhost:3000/post
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3QxMSIsImlhdCI6MTY4OTI4MjA3NX0.z7wy1gMBvDDMGR9ob74oucY6yYintfK206JWd8YYBzw
+Content-Type: application/json
+
+{
+    "title": "Title july 1",
+    "text": "Body test 1",
+    "comments": "Comments test 1",
+    "publish_status": "false"
+}
+
+###GET POST BY ID###
+###
+###example post "_id": "64b06bc5f3ccd2a155e16c4b",
+GET http://localhost:3000/post/64b06bc5f3ccd2a155e16c4b
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3QxMSIsImlhdCI6MTY4OTI4MjA3NX0.z7wy1gMBvDDMGR9ob74oucY6yYintfK206JWd8YYBzw
+
+###UPDATE A POST BY ID###
+PATCH http://localhost:3000/post/64b06bc5f3ccd2a155e16c4b
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3QxMSIsImlhdCI6MTY4OTI4MjA3NX0.z7wy1gMBvDDMGR9ob74oucY6yYintfK206JWd8YYBzw
+Content-Type: application/json
+
+{
+    "title": "Title July 10",
+    "text": "Body test 10",
+    "comments": "Comments test 10",
+    "publish_status": "true"
+}
+
+###DELETE A POST BY ID###
+DELETE http://localhost:3000/post/64b06bc5f3ccd2a155e16c4b
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3QxMSIsImlhdCI6MTY4OTI4MjA3NX0.z7wy1gMBvDDMGR9ob74oucY6yYintfK206JWd8YYBzw
+
+################################################################
+#TESTING COMMENTS CRUD FUNCTIONALITY#
+################################################################
+###GET ALL COMMENTS ###
+GET http://localhost:3000/comment
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3QxMSIsImlhdCI6MTY4OTI4MjA3NX0.z7wy1gMBvDDMGR9ob74oucY6yYintfK206JWd8YYBzw
+
+
+#Example comment ID to use: 
+#6351f117efa1aed208eeb1fc
+
+###Create a comment ###
+POST http://localhost:3000/comment
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3QxMSIsImlhdCI6MTY4OTI4MjA3NX0.z7wy1gMBvDDMGR9ob74oucY6yYintfK206JWd8YYBzw
+Content-Type: application/json
+
+{
+    "title": "july ttitle 1",
+    "text": "july text 2"    
+}
+
+###Get comment by ID ###
+GET http://localhost:3000/comment/64b18a1a8bc5cf13c3baa0f8
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3QxMSIsImlhdCI6MTY4OTI4MjA3NX0.z7wy1gMBvDDMGR9ob74oucY6yYintfK206JWd8YYBzw
+
+
+###
+DELETE http://localhost:3000/comment/64b18a1a8bc5cf13c3baa0f8
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3QxMSIsImlhdCI6MTY4OTI4MjA3NX0.z7wy1gMBvDDMGR9ob74oucY6yYintfK206JWd8YYBzw

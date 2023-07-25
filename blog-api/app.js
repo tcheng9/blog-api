@@ -55,7 +55,8 @@ passport.deserializeUser(function(id, done) {
 
 
 /////////MONGO DB SETUP
-const mongoPw = process.env.MONGOPW;
+// const mongoPw = process.env.MONGOPW;
+const mongoPw = "mongo";
 const mongoDb = "mongodb+srv://tcheng:" + mongoPw + "@cluster0.c17ee5l.mongodb.net/?retryWrites=true&w=majority";
 mongoose.connect(mongoDb, { useUnifiedTopology: true, useNewUrlParser: true });
 const db = mongoose.connection;

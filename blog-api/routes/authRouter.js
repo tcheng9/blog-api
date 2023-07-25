@@ -7,7 +7,7 @@ const passport = require('passport');
 const jwt = require('jsonwebtoken');
 
 //Get all users
-router.get('/users', async function(req,res,next){
+router.get('/users',authenticateToken,  async function(req,res,next){
     try{
         const users = await User.find({username: 'test3' });
         res.json(users);
@@ -17,7 +17,7 @@ router.get('/users', async function(req,res,next){
 })
 
 //Sign up users
-router.post('/signup', async (req, res, next) => {
+router.post('/signup', authenticateToken, async (req, res, next) => {
     const hashedPassword = await bcrypt.hash(req.body.password, 10);
     
     const user = new User({
@@ -37,7 +37,7 @@ router.post('/signup', async (req, res, next) => {
 
 //Login users
 // router.post('/login', passport.authenticate("local"));
-router.post('/login', async (req, res) => {
+router.post('/login', authenticateToken, async (req, res) => {
     // try{
     //     const users = await User.find({username: req.body.username });
     //     res.json(users);

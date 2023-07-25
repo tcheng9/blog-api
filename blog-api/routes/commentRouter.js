@@ -33,12 +33,12 @@ router.get('/', authenticateToken, async function (req, res, next) {
 });
 
 /* GET 1 comment home page */
-router.get('/:id', getComment, function (req, res,) {
+router.get('/:id',authenticateToken,  getComment, function (req, res,) {
     res.send(res.comment.text);
 });
 
 /* POST comment */
-router.post('/', async function (req, res) {
+router.post('/', authenticateToken, async function (req, res) {
     const comment = new Comment({
         text: req.body.text,
         email: req.body.email
@@ -54,7 +54,7 @@ router.post('/', async function (req, res) {
 
 //Udate a comment 
 
-router.patch('/:id', getComment, async (req, res, next) => {
+router.patch('/:id', authenticateToken, getComment, async (req, res, next) => {
     if(req.body.text != null){
         res.comment.text = req.body.text;
     }
@@ -73,7 +73,7 @@ router.patch('/:id', getComment, async (req, res, next) => {
 
 //Delete a comment
 
-router.delete('/:id', getComment, async (req, res, next) => {
+router.delete('/:id',authenticateToken, getComment, async (req, res, next) => {
     try {
         await res.comment.remove();
         res.json({message: "Deleted comment"});
