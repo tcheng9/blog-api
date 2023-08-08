@@ -2,24 +2,31 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
-import {Routes, Route} from "react-router-dom";
+import {Routes, Route, Link, BrowserRouter} from "react-router-dom";
 import Posts from "./components/Posts.jsx"
+
 function App() {
   const [count, setCount] = useState(0)
 
   return (
 
-    <>
+    
       <div>
         test
-        <Routes>
-          <Route path = "/postsTests" element = {<Posts/>}> link to new page </Route>
-          
-        </Routes>
-
         
+          
+        
+        <div>
+          <Link to = "/poststests">
+              Posts page
+          </Link>
+
+          
+        </div>
+        
+  
       </div>
-    </>
+    
     // <>
     //   <div>
     //     <a href="https://vitejs.dev" target="_blank">
