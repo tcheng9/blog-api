@@ -7,10 +7,7 @@ import Posts from "./components/Posts.jsx"
 ReactDOM.createRoot(document.getElementById('root')).render(
   <BrowserRouter>
     <App />
-    <Routes>
-          <Route path = "/poststests" element = {<Posts/>} />
-          <Route path = "/" element = {<main/>} />
-      </Routes>
+    
   </BrowserRouter>
 
  
