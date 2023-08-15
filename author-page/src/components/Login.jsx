@@ -27,7 +27,9 @@ function Login(){
             headers: {
                 "Content-Type": "application/json",
             },
-        }).then((res) => res.json)
+        }).then((res) => {
+            console.log(res.json())
+        })
         .then((data) => {
             console.log(data);
         })
