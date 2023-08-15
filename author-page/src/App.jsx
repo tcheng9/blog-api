@@ -7,6 +7,9 @@ import Posts from "./components/Posts.jsx"
 import Home from "./components/Home";
 import Login from './components/Login';
 import Signup from './components/Signup';
+import PostForm from "./components/PostForm"
+import ManagePosts from './components/ManagePosts';
+
 function App() {
   const [count, setCount] = useState(0)
 
@@ -21,6 +24,8 @@ function App() {
                 <Route path = "/" element = {<Home/>} />
                 <Route path = "/signup" element = {<Signup/>} />
                 <Route path = "/login" element = {<Login/>} />
+                <Route path = "/form" element = {<PostForm/>} />
+                <Route path = "/manageposts" element = {<ManagePosts/>}/>
             </Routes>
       
           
