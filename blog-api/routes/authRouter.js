@@ -17,7 +17,7 @@ router.get('/users',authenticateToken,  async function(req,res,next){
 })
 
 //Sign up users
-router.post('/signup', authenticateToken, async (req, res, next) => {
+router.post('/signup', async (req, res, next) => {
     const hashedPassword = await bcrypt.hash(req.body.password, 10);
     
     const user = new User({
@@ -37,7 +37,7 @@ router.post('/signup', authenticateToken, async (req, res, next) => {
 
 //Login users
 // router.post('/login', passport.authenticate("local"));
-router.post('/login', authenticateToken, async (req, res) => {
+router.post('/login', async (req, res) => {
     // try{
     //     const users = await User.find({username: req.body.username });
     //     res.json(users);
