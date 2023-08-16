@@ -27,15 +27,20 @@ function Login(){
             headers: {
                 "Content-Type": "application/json",
             },
-        }).then((res) => {
-            console.log(res.json())
-        })
+        }).then(res => res.json())
         .then((data) => {
-            console.log(data);
+            let token = data['accessToken'];
+            if (token){
+                localStorage.setItem('accessToken', token);
+            }
+            console.log(data['accessToken']);
+            
         })
         .catch((err) => console.error(err));
     }
-    
+    //localStorage.setItem('test', 'test1') -> set a value in local storage
+            //localStorage.getItem('test') -> get a value in local storage 
+        
     return (
         <div>
             Login page;

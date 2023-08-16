@@ -55,8 +55,12 @@ router.post('/login', async (req, res) => {
             const currUser = {username: users[0].username}
             
             const accessToken = jwt.sign(currUser, process.env.ACCESS_TOKEN_SECRET);
+            // const refreshToken = jwt.sign(currUser, process.env.REFRESH_TOKEN_SECRET);
             
-            res.json({accessToken: accessToken});
+            res.json({
+                accessToken: accessToken,
+                
+            });
         } else {
             res.json('not successful');
         }
