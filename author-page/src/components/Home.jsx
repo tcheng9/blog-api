@@ -5,7 +5,7 @@ function Home(){
         <div>
             This is the home page
             <br/>
-            <Link to = "/poststests">
+            <Link to = "/posts">
               Posts page
             </Link>
             <br/>
