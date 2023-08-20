@@ -117,4 +117,22 @@ function authenticateToken(req, res, next){
 }
 
 
+////AUGUST 2023 REVISION
+//CUSTOM COMMENT PATH
+/* POST comment */
+router.post('/', authenticateToken, async function (req, res) {
+    const comment = new Comment({
+        text: req.body.text,
+        email: req.body.email
+    })
+
+    try{
+        const newComment = await comment.save();
+        res.status(201).json(newComment);
+    } catch (err){
+        res.status(401).json({message: err.message});
+    }
+})
+
+
 module.exports = router;

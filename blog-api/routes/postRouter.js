@@ -27,11 +27,13 @@ router.get('/', authenticateToken, async function(req, res, next){
 
 /* POST - (SAVE AN POST TO DB) */
 router.post('/', authenticateToken, async function(req, res){
+    let currDate = new Date();
     const post = new Post({
         title: req.body.title,
         text: req.body.text,
         comments: req.body.comments,
         publish_status: req.body.publish_status,
+        date: currDate.toString()
      })
 
     //  console.log(req.body);

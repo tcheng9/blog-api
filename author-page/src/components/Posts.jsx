@@ -2,6 +2,8 @@ import React, {useEffect, useState} from 'react';
 
 import {Link} from 'react-router-dom';
 
+//This is the page that loads all posts
+
 function Posts(){
     
     const [post, setPost] = useState([]);
@@ -14,9 +16,7 @@ function Posts(){
             
             method:"GET",
             headers: {
-                
                 'Authorization': "Bearer " + token
-
             }
         })
         .then(res =>{
@@ -30,7 +30,8 @@ function Posts(){
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log('click');
+        console.log(comment);
+        setComment('');
     }
   
     const commentsCall = () => {
@@ -44,19 +45,25 @@ function Posts(){
                     post.map((item, index) => {
                         return (
                             
-                            <div key = {index}> 
+                            <div key = {index} id = {item._id} > 
                                 <h1> {item.title} {index} </h1>
-                                <form>
-                                    <input 
-                                        type = "text"
-                                        placeholder = "New comment here!"
-                                    >
-                                    
-                                    </input>
-                                    <button onClick = {handleSubmit}>
-                                        Submit comment!
-                                    </button>
-                                </form>
+                                
+                                    {item.text}
+                                    <form>
+                                        <input 
+                                            type = "text"
+                                            placeholder = "New comment here!"
+                                            onChange = {(e) => {
+                                                setComment(e.target.value);
+                                            }}
+                                        >
+                                        
+                                        </input>
+                                        <button onClick = {handleSubmit}>
+                                            Submit comment!
+                                        </button>
+                                    </form>
+                            
                             </div>
                             
                         )

@@ -9,7 +9,8 @@ const PostSchema = new Schema(
         // comments: {type: Schema.Types.ObjectId, ref: "comment", required: true},
         // comments: [{type: Schema.Types.ObjectId, ref: "comment"}],
         // timestamp: Date.now(),
-        publish_status: {type: Boolean}
+        publish_status: {type: Boolean}, 
+        created_at: {type:Date, default:Date.now}
     }
 )
 
