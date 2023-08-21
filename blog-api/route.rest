@@ -210,3 +210,9 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc
 ###
 DELETE http://localhost:3000/comment/64b18a1a8bc5cf13c3baa0f8
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3QxMSIsImlhdCI6MTY4OTI4MjA3NX0.z7wy1gMBvDDMGR9ob74oucY6yYintfK206JWd8YYBzw
+
+
+
+###
+GET http://localhost:3000/comment/match/64e3a2b69c04ec847ccbd85c
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3QxMSIsImlhdCI6MTY4OTI4MjA3NX0.z7wy1gMBvDDMGR9ob74oucY6yYintfK206JWd8YYBzw

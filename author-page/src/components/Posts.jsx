@@ -24,6 +24,7 @@ function Posts(){
             return res.json();
         })
         .then(data => {
+            
             setPost(data);
         })
         .catch((err) => console.log(err));
@@ -42,10 +43,10 @@ function Posts(){
   
     const commentsCall = () => {
        
-        fetch('http://localhost:3000/comment', {
+        fetch('http://localhost:3000/comment/match', {
             method: 'POST',
             headers: {
-                'Authorization': 'Bearer' + ' ' + token,
+                'Authorization': 'Bearer ' + token,
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
@@ -61,6 +62,7 @@ function Posts(){
             <div>
                 {
                     post.map((item, index) => {
+                        console.log('andiasnda' + index);
                         return (
                             
                             <div key = {index} id = {item._id} > 

@@ -31,7 +31,7 @@ router.post('/', authenticateToken, async function(req, res){
     const post = new Post({
         title: req.body.title,
         text: req.body.text,
-        comments: req.body.comments,
+        // comments: req.body.comments,
         publish_status: req.body.publish_status,
         date: currDate.toString()
      })

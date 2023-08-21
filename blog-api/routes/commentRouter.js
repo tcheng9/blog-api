@@ -4,6 +4,7 @@ var Comment = require('../models/comment');
 var async = require('async');
 const { default: mongoose } = require('mongoose');
 const jwt = require('jsonwebtoken');
+const Post = require('../models/post');
 // router.post('/post/:id/comment', async (req, res) => {
 //     const comment = new Comment({
 //         text: req.body.text,
@@ -128,12 +129,36 @@ router.post('/', authenticateToken, async function (req, res) {
         postId: req.body.postId,
         username: 'placeholder'
     })
+    //trying to append to Post model
+    let postId = req.body.postId;
+  
+
 
     try{
         const newComment = await comment.save();
+        // console.log(newComment._id);
+        // console.log(postId);
+
+        // Post.findByIdAndUpdate(postId, {$push: {comments: newComment._id}})
         res.status(201).json(newComment);
     } catch (err){
         res.status(401).json({message: err.message});
+    }
+})
+
+
+///
+
+router.get('/match/:postid', authenticateToken, async function (req, res) {
+    
+    let postId = req.params.postid;
+    let matches = await Comment.find({postId:{$in: postId}})
+
+    try{
+        // console.log(matches);
+        res.json(matches)
+    } catch(err){
+        res.json({message:err.message});
     }
 })
 
