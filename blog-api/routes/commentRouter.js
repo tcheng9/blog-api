@@ -38,19 +38,19 @@ router.get('/:id',authenticateToken,  getComment, function (req, res,) {
 });
 
 /* POST comment */
-router.post('/', authenticateToken, async function (req, res) {
-    const comment = new Comment({
-        text: req.body.text,
-        email: req.body.email
-    })
+// router.post('/', authenticateToken, async function (req, res) {
+//     const comment = new Comment({
+//         text: req.body.text,
+//         email: req.body.email
+//     })
 
-    try{
-        const newComment = await comment.save();
-        res.status(201).json(newComment);
-    } catch (err){
-        res.status(401).json({message: err.message});
-    }
-})
+//     try{
+//         const newComment = await comment.save();
+//         res.status(201).json(newComment);
+//     } catch (err){
+//         res.status(401).json({message: err.message});
+//     }
+// })
 
 //Udate a comment 
 
@@ -120,10 +120,13 @@ function authenticateToken(req, res, next){
 ////AUGUST 2023 REVISION
 //CUSTOM COMMENT PATH
 /* POST comment */
+/* POST comment */
 router.post('/', authenticateToken, async function (req, res) {
     const comment = new Comment({
         text: req.body.text,
-        email: req.body.email
+        email: '',
+        postId: req.body.postId,
+        username: 'placeholder'
     })
 
     try{
@@ -133,6 +136,5 @@ router.post('/', authenticateToken, async function (req, res) {
         res.status(401).json({message: err.message});
     }
 })
-
 
 module.exports = router;

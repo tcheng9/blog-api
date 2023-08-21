@@ -8,7 +8,8 @@ function Posts(){
     
     const [post, setPost] = useState([]);
     const [comment, setComment] = useState([]);
-
+    const [postId, setPostId] = useState('');
+    const [getComments, setComments] = useState([]);
     let token = localStorage.getItem('accessToken');
     useEffect(()=> {
     
@@ -30,13 +31,30 @@ function Posts(){
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        commentsCall();
         console.log(comment);
+        console.log(postId)
         setComment('');
+        setPostId('');
+        
+        
     }
   
     const commentsCall = () => {
-        
+       
+        fetch('http://localhost:3000/comment', {
+            method: 'POST',
+            headers: {
+                'Authorization': 'Bearer' + ' ' + token,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                text: comment,
+                postId: postId
+            })
+        })
     }
+
     return (
         <div>
             <p> Posts page </p>
@@ -49,12 +67,17 @@ function Posts(){
                                 <h1> {item.title} {index} </h1>
                                 
                                     {item.text}
+
+                                    
                                     <form>
+                                    
                                         <input 
+                                            id = {item._id}
                                             type = "text"
                                             placeholder = "New comment here!"
                                             onChange = {(e) => {
                                                 setComment(e.target.value);
+                                                setPostId(e.target.id);
                                             }}
                                         >
                                         
