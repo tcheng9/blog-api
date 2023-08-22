@@ -10,26 +10,104 @@ function Posts(){
     const [comment, setComment] = useState([]);
     const [postId, setPostId] = useState('');
     const [getComments, setComments] = useState([]);
+    const [firstRes, setFirstRes] = useState([]);
+    const [secondRes, setSecondRes] = useState([]);
+
     let token = localStorage.getItem('accessToken');
-    useEffect(()=> {
     
-        fetch('http://localhost:3000/post', {
+    //Testing Promise.All()
+    let fetch1 = fetch('http://localhost:3000/post', {
             
             method:"GET",
             headers: {
                 'Authorization': "Bearer " + token
             }
-        })
-        .then(res =>{
-            return res.json();
-        })
-        .then(data => {
+        });
+    let fetch2 = fetch('http://localhost:3000/post', {
             
-            setPost(data);
-        })
-        .catch((err) => console.log(err));
-    }, [])
+            method:"GET",
+            headers: {
+                'Authorization': "Bearer " + token
+            }
+    })
+    //attempt 1
+    // useEffect(() => {
+    //     Promise.all([fetch1, fetch2])
+    //     .then(([res1, res2]) => {
+    //         Promise.all([res1.json(), res2.json()])
+    //     })
+    //     .then(([vals1, vals2]) => {
+    //         console.log(vals1);
+    //         console.log(vals2);
+    //     })
+    // }, [])
+    
+    //attempt2 -> sortof working
+    useEffect(() => {
+        let arr = []
+        let process = (prom) => {
+            prom.then(data => {
+                
+                
+               
+                
+                
+                firstRes.push(data)
+                
+                
+            })
+        }
 
+        Promise.all([fetch1, fetch2])
+        .then(allResponses => {
+            allResponses.forEach(file => {
+                process(file.json())
+            })
+            
+        })
+        // console.log(firstRes)
+    }, [])
+    console.log(firstRes)
+
+
+    //attempt3 
+    // useEffect(() => {
+        
+
+    //     Promise.all([fetch1, fetch2])
+    //     .then(allResponses => {
+    //         // allResponses.forEach(file => {
+    //         //     process(file.json())
+    //         // })
+    //         setFirstRes(allResponses[0].json());
+    //         setSecondRes(allResponses[1].json());
+    //     })
+            
+        
+    //     console.log(firstRes);
+    //     console.log(secondRes);
+    // }, [])
+    
+    /*ORIGINAL USEEFFECT
+    // useEffect(()=> {
+    
+    //     fetch('http://localhost:3000/post', {
+            
+    //         method:"GET",
+    //         headers: {
+    //             'Authorization': "Bearer " + token
+    //         }
+    //     })
+    //     .then(res =>{
+    //         return res.json();
+    //     })
+    //     .then(data => {
+            
+    //         setPost(data);
+    //     })
+    //     .catch((err) => console.log(err));
+    // }, [])
+    */
     const handleSubmit = (e) => {
         e.preventDefault();
         commentsCall();

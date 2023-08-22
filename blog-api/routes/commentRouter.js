@@ -35,7 +35,7 @@ router.get('/', authenticateToken, async function (req, res, next) {
 
 /* GET 1 comment home page */
 router.get('/:id',authenticateToken,  getComment, function (req, res,) {
-    res.send(res.comment.text);
+    res.send(res.comment);
 });
 
 /* POST comment */
@@ -156,7 +156,7 @@ router.get('/match/:postid', authenticateToken, async function (req, res) {
 
     try{
         // console.log(matches);
-        res.json(matches)
+        res.json({comments: matches})
     } catch(err){
         res.json({message:err.message});
     }

@@ -83,21 +83,37 @@ router.delete('/:id',authenticateToken, getPost, async (req, res) => {
         res.status(500).json({message: err.message});
     }
 })
+//Get Post by ID and find the corresponding Comments.postId with matchng postId
+// router.get('/:id', async(req, res) => {
+//     let comment
+//     let post 
+//     Post.findById(req.params.id).then(post => {
+        
+//         Comment.find({postId: req.params.id}).then(comments => {
+            
+//             res.json({post: post, comments: comments});
+//         })
+//     })
+    
+  
+// })
 
+//Get a post by id
 router.get('/:id', async(req, res) => {
     let comment
     let post 
-    Post.findById(req.params.id).then(post => {
+    try{
+        post =Post.findById(req.params.id).then(post => {
         
-        Comment.find({postId: req.params.id}).then(comments => {
-            
-            res.json({post: post, comments: comments});
+            res.json({post:post})
         })
-    })
+    } catch (err){
+        return res.status(500).json({message:err.message});
+    }
+    
     
   
 })
-
 
 /* FUNCTION TO GET POST BY ID */
 async function getPost(req, res, next){
