@@ -69,8 +69,8 @@ function Posts(){
                                 <h1> {item.title} {index} </h1>
                                 
                                     {item.text}
-
-                                    
+                                 
+                                    <Link to = {`/posts/${item._id}`}>link </Link>
                                     <form>
                                     
                                         <input 
@@ -88,7 +88,7 @@ function Posts(){
                                             Submit comment!
                                         </button>
                                     </form>
-                            
+                                
                             </div>
                             
                         )
@@ -108,3 +108,5 @@ function Posts(){
 }
 
 export default Posts;
+
+
