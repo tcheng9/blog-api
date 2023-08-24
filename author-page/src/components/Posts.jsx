@@ -43,31 +43,31 @@ function Posts(){
     // }, [])
     
     //attempt2 -> sortof working
-    useEffect(() => {
-        let arr = []
-        let process = (prom) => {
-            prom.then(data => {
+    // useEffect(() => {
+    //     let arr = []
+    //     let process = (prom) => {
+    //         prom.then(data => {
                 
                 
                
                 
                 
-                firstRes.push(data)
+    //             firstRes.push(data)
                 
                 
-            })
-        }
+    //         })
+    //     }
 
-        Promise.all([fetch1, fetch2])
-        .then(allResponses => {
-            allResponses.forEach(file => {
-                process(file.json())
-            })
+    //     Promise.all([fetch1, fetch2])
+    //     .then(allResponses => {
+    //         allResponses.forEach(file => {
+    //             process(file.json())
+    //         })
             
-        })
-        // console.log(firstRes)
-    }, [])
-    console.log(firstRes)
+    //     })
+    //     // console.log(firstRes)
+    // }, [])
+    // console.log(firstRes)
 
 
     //attempt3 
@@ -88,26 +88,26 @@ function Posts(){
     //     console.log(secondRes);
     // }, [])
     
-    /*ORIGINAL USEEFFECT
-    // useEffect(()=> {
+    //ORIGINAL USEEFFECT
+    useEffect(()=> {
     
-    //     fetch('http://localhost:3000/post', {
+        fetch('http://localhost:3000/post', {
             
-    //         method:"GET",
-    //         headers: {
-    //             'Authorization': "Bearer " + token
-    //         }
-    //     })
-    //     .then(res =>{
-    //         return res.json();
-    //     })
-    //     .then(data => {
+            method:"GET",
+            headers: {
+                'Authorization': "Bearer " + token
+            }
+        })
+        .then(res =>{
+            return res.json();
+        })
+        .then(data => {
             
-    //         setPost(data);
-    //     })
-    //     .catch((err) => console.log(err));
-    // }, [])
-    */
+            setPost(data);
+        })
+        .catch((err) => console.log(err));
+    }, [])
+    
     const handleSubmit = (e) => {
         e.preventDefault();
         commentsCall();
@@ -121,7 +121,7 @@ function Posts(){
   
     const commentsCall = () => {
        
-        fetch('http://localhost:3000/comment/match', {
+        fetch('http://localhost:3000/comment', {
             method: 'POST',
             headers: {
                 'Authorization': 'Bearer ' + token,
@@ -140,7 +140,6 @@ function Posts(){
             <div>
                 {
                     post.map((item, index) => {
-                        console.log('andiasnda' + index);
                         return (
                             
                             <div key = {index} id = {item._id} > 
@@ -149,6 +148,7 @@ function Posts(){
                                     {item.text}
                                  
                                     <Link to = {`/posts/${item._id}`}>link </Link>
+
                                     <form>
                                     
                                         <input 
