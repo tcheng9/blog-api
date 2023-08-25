@@ -62,40 +62,79 @@ function PostDetails(){
         console.log(commentsResults);
     }
 
-    //promise.all attempt
+    //Testing Promise.All()
+    let fetch1 = fetch('http://localhost:3000/post', {
+            
+            method:"GET",
+            headers: {
+                'Authorization': "Bearer " + token
+            }
+        });
+    let fetch2 = fetch('http://localhost:3000/post', {
+            
+            method:"GET",
+            headers: {
+                'Authorization': "Bearer " + token
+            }
+    })
+    //attempt 1
     // useEffect(() => {
-
-        
-
+    //     Promise.all([fetch1, fetch2])
+    //     .then(([res1, res2]) => {
+    //         Promise.all([res1.json(), res2.json()])
+    //     })
+    //     .then(([vals1, vals2]) => {
+    //         console.log(vals1);
+    //         console.log(vals2);
+    //     })
+    // }, [])
+    
+    //attempt2 -> sortof working
+    // useEffect(() => {
+    //     let arr = []
     //     let process = (prom) => {
     //         prom.then(data => {
-    //             testArr.push(data)               
+                
+                
+               
+                
+                
+    //             firstRes.push(data)
+                
+                
     //         })
     //     }
 
-    //     Promise.all([getPostFetch, getCommentsFetch])
+    //     Promise.all([fetch1, fetch2])
     //     .then(allResponses => {
     //         allResponses.forEach(file => {
     //             process(file.json())
     //         })
-    //         return testArr
-    //     }).then( data => {
-    //         setPostResults(data);
-    //         console.log(postResults)
-    //         // let postFetchRes = data[0]
-    //         // let commentsFetchRes = data[1]
             
-    //         // // let postFetchRes2 = postFetchRes['post']
-
-    //         // setPostResults(postFetchRes)
-    //         // setCommentsResults(commentsFetchRes);
-
-    //         // console.log(postResults);
-    //         // console.log(commentsResults);
     //     })
-    
+    //     // console.log(firstRes)
+    // }, [])
+    // console.log(firstRes)
+
+
+    //attempt3 
+    // useEffect(() => {
+        
+
+    //     Promise.all([fetch1, fetch2])
+    //     .then(allResponses => {
+    //         // allResponses.forEach(file => {
+    //         //     process(file.json())
+    //         // })
+    //         setFirstRes(allResponses[0].json());
+    //         setSecondRes(allResponses[1].json());
+    //     })
             
-    //     }, [])
+        
+    //     console.log(firstRes);
+    //     console.log(secondRes);
+    // }, [])
+    
         
 
        

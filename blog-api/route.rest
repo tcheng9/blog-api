@@ -219,3 +219,14 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc
 ### get comments for corresponding postid
 GET http://localhost:3000/comment/match/64e787f9907fea77aa497348
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3QxMSIsImlhdCI6MTY4OTI4MjA3NX0.z7wy1gMBvDDMGR9ob74oucY6yYintfK206JWd8YYBzw
+
+
+###UPDATE A POST BY ID###
+PATCH http://localhost:3000/post/64e787f9907fea77aa497348
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3QxMSIsImlhdCI6MTY4OTI4MjA3NX0.z7wy1gMBvDDMGR9ob74oucY6yYintfK206JWd8YYBzw
+Content-Type: application/json
+
+{
+    
+    "publish_status": false
+}
