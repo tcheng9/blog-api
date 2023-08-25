@@ -104,6 +104,7 @@ function Posts(){
         .then(data => {
             
             setPost(data);
+            
         })
         .catch((err) => console.log(err));
     }, [])

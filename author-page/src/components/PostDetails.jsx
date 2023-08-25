@@ -35,10 +35,11 @@ function PostDetails(){
             return res.json();
         })
         .then(data => {
-            setPostResults(data);
+            setPostResults(data['post']);
+            console.log(postResults);
         })
 
-        let getCommentsFetch = fetch(`http://localhost:3000/comment/match/${postId}`, {
+        fetch(`http://localhost:3000/comment/match/${postId}`, {
             method:'GET',
             headers:{
                 'Authorization': 'Bearer ' + token
@@ -54,6 +55,12 @@ function PostDetails(){
          })
 
     }, [])
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        console.log(postResults);
+        console.log(commentsResults);
+    }
 
     //promise.all attempt
     // useEffect(() => {
@@ -100,7 +107,24 @@ function PostDetails(){
             post details test page
             {/* <p> {commentsResults[0].email} </p> */}
             
+            {   <p> {postResults._id} </p> } 
+            
             <p> The param id is {params.id}</p>
+            {
+                commentsResults.map((item, index) => {
+                    return (
+                        <div key = {index} id = {item._id}>
+                            <h3> New Comment </h3> 
+                            <p> {item._id} </p> 
+                            <p> {item.text} </p>
+                         </div>
+                    )
+                    
+                })
+            }
+            <button onClick = {handleSubmit}>
+                Check results
+            </button>
                  
         </div>
     )
