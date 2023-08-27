@@ -5,7 +5,7 @@ function ManagePosts(){
     const [posts, setPosts] = useState([]);
     const [postId, setPostId] = useState('');
     let token = localStorage.getItem('accessToken');
-    
+    let newPublishStatus;
     useEffect(()=> {
     
         fetch('http://localhost:3000/post', {
@@ -49,14 +49,26 @@ function ManagePosts(){
             })
         })
     }
+    const testButtonOff = (e) => {
+        e.preventDefault();
+        console.log('turn off');
+    }
 
+    const testButtonOn = (e) => {
+        e.preventDefault();
+        console.log('turn on');
+    }
     return (
         <div>
             {
                 posts.map((item, index) => {
+                    
+                
                     return (
                         <div key = {index} id = {item._id}>
                             <h1> {item.title} </h1>
+                            <p> {item.publish_status} </p>
+                            
                             <p> --------- end of post -----------</p>
 
                             <form>
@@ -65,9 +77,21 @@ function ManagePosts(){
                                 />
                             </form>
 
+                            <div> 
+                                {item.publish_status ? 
+                                    (<button onClick = {testButtonOff}>
+                                        Unpublish
+                                    </button>) : 
+                                    (<button onClick = {testButtonOn}>
+                                        Publish
+                                    </button>)
+                                }
                             <button id = {item._id} onClick = {handleSubmit}>
                                 log all posts
                             </button>
+
+                            </div>
+                            
                         </div>
                         
 
@@ -76,9 +100,22 @@ function ManagePosts(){
             }
             
         </div>
-
+        
         
     )
 }
 
 export default ManagePosts;
+
+/*
+
+<div>
+                                        {item.publish_status ? 
+                                        (<div> test true </div>) : 
+                                        (<div> test false </div>)
+
+                                        }
+                                </div>
+                            
+
+*/

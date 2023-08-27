@@ -75,6 +75,7 @@ function Posts(){
                                 
                                 {item.text}
                                 
+                                
                                 <Link to = {`/posts/${item._id}`}>link </Link>
 
                                 <form>
@@ -116,3 +117,16 @@ function Posts(){
 export default Posts;
 
 
+
+/*
+
+<div>
+                                        {item.publish_status ? 
+                                        (<div> test true </div>) : 
+                                        (<div> test false </div>)
+
+                                        }
+                                </div>
+                            
+
+*/

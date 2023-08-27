@@ -140,8 +140,10 @@ function PostDetails(){
        
         
     
-
+    
     return (
+
+        
         <div>
             post details test page
             {/* <p> {commentsResults[0].email} </p> */}
@@ -149,9 +151,16 @@ function PostDetails(){
             {   <p> {postResults._id} </p> } 
             
             <p> The param id is {params.id}</p>
+
+            
+
             {
                 commentsResults.map((item, index) => {
+                    let status = item.publish_status;
+
+                    
                     return (
+                        
                         <div key = {index} id = {item._id}>
                             <h3> New Comment </h3> 
                             <p> {item._id} </p> 
