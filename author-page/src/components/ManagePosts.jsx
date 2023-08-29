@@ -4,6 +4,7 @@ import {Link} from 'react-router-dom';
 function ManagePosts(){
     const [posts, setPosts] = useState([]);
     const [postId, setPostId] = useState('');
+    const [publishStatus, setPublishStatus] = useState(false);
     let token = localStorage.getItem('accessToken');
     let newPublishStatus;
     useEffect(()=> {
@@ -39,24 +40,40 @@ function ManagePosts(){
     
     function updatePubStatus(){
         fetch(`http://localhost:3000/post/${postId}`, {
-            method: 'PATCH',
+            method: 'patch',
             headers: {
                 'Authorization': 'Bearer ' + token,
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                "publish_status": true
+                "publish_status": {publishStatus}
             })
         })
     }
     const testButtonOff = (e) => {
+        //Use this button to hide a post
         e.preventDefault();
         console.log('turn off');
+        setPublishStatus(false);
+        setPostId(e.target.id);
+        // console.log(e.target.id)
+        // console.log(postId);
+        console.log(publishStatus)
+        updatePubStatus();
+        setPostId('');
     }
 
     const testButtonOn = (e) => {
+        //Use this button to show a post
         e.preventDefault();
         console.log('turn on');
+        setPublishStatus(true);
+        setPostId(e.target.id);
+        // console.log(e.target.id)
+        // console.log(postId);
+        console.log(publishStatus)
+        updatePubStatus();
+        setPostId('');
     }
     return (
         <div>
@@ -68,7 +85,7 @@ function ManagePosts(){
                         <div key = {index} id = {item._id}>
                             <h1> {item.title} </h1>
                             <p> {item.publish_status} </p>
-                            
+                            <p> {item._id}</p>
                             <p> --------- end of post -----------</p>
 
                             <form>
@@ -79,16 +96,16 @@ function ManagePosts(){
 
                             <div> 
                                 {item.publish_status ? 
-                                    (<button onClick = {testButtonOff}>
+                                    (<button id = {item._id} onClick = {testButtonOff}>
                                         Unpublish
                                     </button>) : 
-                                    (<button onClick = {testButtonOn}>
+                                    (<button id = {item._id}  onClick = {testButtonOn}>
                                         Publish
                                     </button>)
                                 }
-                            <button id = {item._id} onClick = {handleSubmit}>
+                            {/* <button id = {item._id} onClick = {handleSubmit}>
                                 log all posts
-                            </button>
+                            </button> */}
 
                             </div>
                             
