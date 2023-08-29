@@ -21,6 +21,12 @@ const cors = require("cors");
 
 var app = express();
 
+var options = {
+  "origin": "*",
+  "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
+  "preflightContinue": false,
+  "optionsSuccessStatus": 204
+}
 
 //Passport strategies
 passport.use(
@@ -72,7 +78,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.urlencoded({ extended: false }));
 
-app.use(cors());
+app.use(cors(options));
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
