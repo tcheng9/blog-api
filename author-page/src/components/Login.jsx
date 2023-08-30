@@ -1,6 +1,6 @@
 import react, {useState} from 'react';
 import {Link} from 'react-router-dom';
-
+import './css/login.css'
 function Login(){
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -42,10 +42,10 @@ function Login(){
             //localStorage.getItem('test') -> get a value in local storage 
         
     return (
-        <div>
+        <div className = 'login'>
             Login page;
-            <form>
-                <input 
+            <form className = 'form'>
+                <input
                     type = "text"
                     placeholder = "username"
                     name = "username"
