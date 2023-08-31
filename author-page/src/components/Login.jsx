@@ -42,42 +42,61 @@ function Login(){
             //localStorage.getItem('test') -> get a value in local storage 
         
     return (
-        <div className = 'login'>
-            Login page;
-            <form className = 'form'>
-                <input
-                    type = "text"
-                    placeholder = "username"
-                    name = "username"
-                    onChange = {(e) => {
-                        setUsername(e.target.value);
-                    }}
-                />
+        <body>
+            <div className = 'login'>
+                
+                
+                <form className = 'form'>
+                    <h1> Login page </h1>
+                    <br/>
+                    <div className = 'input-box'>
+                        <input             
+                            type = "text"
+                            placeholder = "username"
+                            name = "username"
+                            onChange = {(e) => {
+                                setUsername(e.target.value);
+                            }}
+                        />
+                    </div>
+                    <div className = 'input-box'>
 
-                <input 
-                    type = "text"
-                    placeholder = "password"
-                    name = "password"
-                    onChange = {(e) => {
-                        setPassword(e.target.value);
-                    }}
-                />
+                        <input 
 
-                <button
-                    name = "login"
-                    onClick = {handleLogin}
-                >
-                    Login
-                </button>
-            
-            </form>
+                            type = "text"
+                            placeholder = "password"
+                            name = "password"
+                            onChange = {(e) => {
+                                setPassword(e.target.value);
+                            }}
+                        />
+                    
+                    </div>
+                    
+                    <button
+                        className = 'login-btn'
+                        name = "login"
+                        onClick = {handleLogin}
+                    >
+                        Login
+                    </button>
+                        
+                    <div className = 'register-link'>
+                        <p> Don't have an account?             
+                            <Link className = 'signupLink' to = "/signup">
+                                Signup    
+                            </Link>
+                        </p>
+                    </div>
+                </form>
 
 
-            
-            <Link to = "/">
-                Home    
-            </Link>
-        </div>
+                
+                {/* <Link to = "/">
+                    Home    
+                </Link> */}
+            </div>
+        </body>
     )
 }
 
