@@ -14,7 +14,9 @@ body{
     justify-content:center;
     align-items: center;
     min-height:100vh;
-    background-color:limegreen;
+    background: url('clouds.jpg') no-repeat;
+    background-size:cover;
+    background-position:center;
     
 }
 
@@ -24,6 +26,9 @@ body{
     color: #fff;
     border-radius:10px;
     padding:30px 40px;
+    background: transparent;
+    border: 2px solid white;
+    backdrop-filter: blur(20px)
 }
 
 .form h1{
@@ -78,12 +83,13 @@ body{
 .form .register-link{
     text-align: center;
     font-size: 14.5px;
-    margin-top: 20px 0px 15px;
+    margin: 20px 0px 15px;
     
 }
 
 .register-link .signupLink {
     color: #fff;
     text-decoration: none;
-    font-weight: 600
+    font-weight: 600;
+    
 }

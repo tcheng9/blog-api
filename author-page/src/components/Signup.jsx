@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {Link} from 'react-router-dom';
+import './css/signup.css'
 function Signup(){
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -35,45 +36,56 @@ function Signup(){
     
 
     return (
-        <div>
-            Sign up page
-            <Link to = "/">
-                Home    
-            </Link>
-
-            <form name = "signupForm">
-                
-                <input 
-                    type = "text" 
-                    placeholder = "Enter username" 
-                    name = "username" 
-                    onChange = {(e) =>{
-                        setUsername(e.target.value);
-                    }}
-
-                />
-                
-                
+        <body>
+            <div className = 'wrapper'>
+                <form className = 'signup-form'>
+                    <h1> Sign up page </h1>
+                    <div className = 'input-box'>
+                        <input 
                     
-                
+                        type = "text" 
+                        placeholder = "Enter username" 
+                        name = "username" 
+                        onChange = {(e) =>{
+                            setUsername(e.target.value);
+                        }}
 
-                <input 
-                    type = "text" 
-                    placeholder = "Enter password" 
-                    name = "password"
-                    onChange = {(e) => {
-                        setPassword(e.target.value);
-                    }}   
-                />
+                    />
                     
-                <button onClick = {handleSubmit} > 
+                    </div>
+                    
+                    <div className = 'input-box'>
+                        <input 
+                           
+                            type = "text" 
+                            placeholder = "Enter password" 
+                            name = "password"
+                            onChange = {(e) => {
+                                setPassword(e.target.value);
+                            }}   
+                         />
+                    </div>
+                        
+                    
 
-                    Sign up
-                </button>
-            </form>
+                    
+                    
+                         <button className = 'submit-btn' onClick = {handleSubmit} > 
+                            Submit
+                        </button>
+                    
+                    <div className = 'login'>
+                        <p> Already have an account? <Link className = 'login-link' to = "/login">
+                            Home    
+                        </Link>
 
-            
-        </div>
+                        </p>
+                    </div>
+                </form>
+            </div>
+
+        </body>
+        
     )
 }
 
