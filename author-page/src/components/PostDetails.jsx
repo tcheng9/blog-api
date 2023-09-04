@@ -1,9 +1,13 @@
 import react, {useState, useEffect} from 'react';
 import {useParams, Link} from 'react-router-dom';
+import './css/postdetails.css';
 function PostDetails(){
     const [postResults, setPostResults] = useState([]);
     const [commentsResults, setCommentsResults] = useState([]);
     const [testArr, setTestArr] = useState([]);
+    const [comment, setComment] = useState([]);
+    const [commentPostId, setCommentPostId] = useState('');
+
 
     const params = useParams();
     let postId = params.id;
@@ -77,63 +81,33 @@ function PostDetails(){
                 'Authorization': "Bearer " + token
             }
     })
-    //attempt 1
-    // useEffect(() => {
-    //     Promise.all([fetch1, fetch2])
-    //     .then(([res1, res2]) => {
-    //         Promise.all([res1.json(), res2.json()])
-    //     })
-    //     .then(([vals1, vals2]) => {
-    //         console.log(vals1);
-    //         console.log(vals2);
-    //     })
-    // }, [])
-    
-    //attempt2 -> sortof working
-    // useEffect(() => {
-    //     let arr = []
-    //     let process = (prom) => {
-    //         prom.then(data => {
-                
-                
-               
-                
-                
-    //             firstRes.push(data)
-                
-                
-    //         })
-    //     }
 
-    //     Promise.all([fetch1, fetch2])
-    //     .then(allResponses => {
-    //         allResponses.forEach(file => {
-    //             process(file.json())
-    //         })
-            
-    //     })
-    //     // console.log(firstRes)
-    // }, [])
-    // console.log(firstRes)
-
-
-    //attempt3 
-    // useEffect(() => {
+    //Code to submit comment form
+    const handleCommentSubmit = (e) => {
+        e.preventDefault();
+        commentsCall();
+        console.log(comment);
+        console.log(postId)
+        setComment('');
+        setCommentPostId('');
         
-
-    //     Promise.all([fetch1, fetch2])
-    //     .then(allResponses => {
-    //         // allResponses.forEach(file => {
-    //         //     process(file.json())
-    //         // })
-    //         setFirstRes(allResponses[0].json());
-    //         setSecondRes(allResponses[1].json());
-    //     })
-            
         
-    //     console.log(firstRes);
-    //     console.log(secondRes);
-    // }, [])
+    }
+  
+    const commentsCall = () => {
+       
+        fetch('http://localhost:3000/comment', {
+            method: 'POST',
+            headers: {
+                'Authorization': 'Bearer ' + token,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                text: comment,
+                postId: postId
+            })
+        })
+    }
     
         
 
@@ -146,33 +120,57 @@ function PostDetails(){
         
         <div>
             post details test page
-            {/* <p> {commentsResults[0].email} </p> */}
+            <div className = 'postSection'>
+                {/* <p> {commentsResults[0].email} </p> */}
             
-            {   <p> {postResults._id} </p> } 
+                {   <p> {postResults._id} </p> } 
+                
+                <p> The param id is {params.id}</p>
+                
+            </div>
             
-            <p> The param id is {params.id}</p>
 
-            
+            <div className = 'commentsSection'>
 
-            {
-                commentsResults.map((item, index) => {
-                    let status = item.publish_status;
+                <form>
+                                    
+                                        <input 
+                                            id = {params._id}
+                                            type = "text"
+                                            placeholder = "New comment here!"
+                                            onChange = {(e) => {
+                                                setComment(e.target.value);
+                                                setCommentPostId(e.target.id);
+                                            }}
+                                        >
+                                        
+                                        </input>
+                                        <button onClick = {handleCommentSubmit}>
+                                            Submit comment!
+                                        </button>
+                                    </form>
+                {
+                    commentsResults.map((item, index) => {
+                        let status = item.publish_status;
 
-                    
-                    return (
                         
-                        <div key = {index} id = {item._id}>
-                            <h3> New Comment </h3> 
-                            <p> {item._id} </p> 
-                            <p> {item.text} </p>
-                         </div>
-                    )
-                    
-                })
-            }
-            <button onClick = {handleSubmit}>
-                Check results
-            </button>
+                        return (
+                            
+                            <div key = {index} id = {item._id}>
+                                <h3> New Comment </h3> 
+                                <p> {item._id} </p> 
+                                <p> {item.text} </p>
+                            </div>
+                        )
+                        
+                    })
+                }
+                <button onClick = {handleSubmit}>
+                    Check results
+                </button>
+            </div>
+
+            
                  
         </div>
     )

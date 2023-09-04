@@ -102,32 +102,24 @@ function ManagePosts(){
                 
                     return (
                         <div key = {index} id = {item._id}>
-                            <h1> {item.title} </h1>
-                            <p> {item.publish_status} </p>
-                            <p> {item._id}</p>
-                            <p> --------- end of post -----------</p>
 
-                            <form>
-                                <input 
-
-                                />
-                            </form>
-
-                            <div> 
-                                {item.publish_status ? 
+                            <table className = 'manageTable'>
+                                <tr>
+                                    <td> {item.title}</td>
+                                    <td> {item.publish_status ? 
                                     (<button id = {item._id} onClick = {hidePostButton}>
                                         Unpublish
                                     </button>) : 
                                     (<button id = {item._id}  onClick = {showPostButton}>
                                         Publish
                                     </button>)
-                                }
-                            {/* <button id = {item._id} onClick = {handleSubmit}>
-                                log all posts
-                            </button> */}
-
-                            </div>
-                            
+                                } </td>
+                                </tr>
+                                <tr>
+                                    <td> Test 1</td>
+                                    <td> Test 2 </td>
+                                </tr>
+                            </table>
                         </div>
                         
 

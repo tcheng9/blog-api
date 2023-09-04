@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 
 import {Link} from 'react-router-dom';
-
+import './css/allposts.css';
 //This is the page that loads all posts
 
 function Posts(){
@@ -64,39 +64,52 @@ function Posts(){
 
     return (
         <div>
-            <p> Posts page </p>
+            <h1> All posts</h1>
             <div>
                 {
                     posts.map((item, index) => {
+                        let max_substring;
+                        if (item.length > 250){
+                            max_substring = 250;
+                        } else {
+                            max_substring = item.text.length;
+                        }
                         return (
                             
-                            <div key = {index} id = {item._id} > 
-                                <h1> {item.title} {index} </h1>
+                            
+                            <div>
                                 
-                                {item.text}
-                                
-                                
-                                <Link to = {`/posts/${item._id}`}>link </Link>
+                                <div key = {index} id = {item._id} className = "postItem"> 
+                                  
 
-                                <form>
-                                
-                                    <input 
-                                        id = {item._id}
-                                        type = "text"
-                                        placeholder = "New comment here!"
-                                        onChange = {(e) => {
-                                            setComment(e.target.value);
-                                            setPostId(e.target.id);
-                                        }}
-                                    >
                                     
-                                    </input>
-                                    <button onClick = {handleSubmit}>
-                                        Submit comment!
-                                    </button>
-                                </form>
-                                
+                                    <h1 className = 'postTitle'> 
+                                        <Link to = {`/posts/${item._id}`}> {item.title} </Link>
+                                    
+                                    </h1>
+                                    <p className = 'postText'> {item.text.substring(0, max_substring)} </p>
+                                    {/* <form>
+                                    
+                                        <input 
+                                            id = {item._id}
+                                            type = "text"
+                                            placeholder = "New comment here!"
+                                            onChange = {(e) => {
+                                                setComment(e.target.value);
+                                                setPostId(e.target.id);
+                                            }}
+                                        >
+                                        
+                                        </input>
+                                        <button onClick = {handleSubmit}>
+                                            Submit comment!
+                                        </button>
+                                    </form> */}
+                                    
+                                </div>
                             </div>
+
+                          
                             
                         )
                     })
