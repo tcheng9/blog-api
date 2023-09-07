@@ -119,55 +119,62 @@ function PostDetails(){
 
         
         <div>
-            post details test page
+          
             <div className = 'postSection'>
                 {/* <p> {commentsResults[0].email} </p> */}
             
-                {   <p> {postResults._id} </p> } 
+                {   
+                    <div>
+
+                        <h1> {postResults.title} </h1> 
+                        <p> {postResults.text} </p> 
+                    </div>
+                } 
                 
-                <p> The param id is {params.id}</p>
+                {/* <p> The param id is {params.id}</p> */}
                 
             </div>
             
 
             <div className = 'commentsSection'>
+                <div className = 'commentsCenter'>
 
-                <form>
-                                    
-                                        <input 
-                                            id = {params._id}
-                                            type = "text"
-                                            placeholder = "New comment here!"
-                                            onChange = {(e) => {
-                                                setComment(e.target.value);
-                                                setCommentPostId(e.target.id);
-                                            }}
-                                        >
+                
+                    <form>
                                         
-                                        </input>
-                                        <button onClick = {handleCommentSubmit}>
-                                            Submit comment!
-                                        </button>
-                                    </form>
-                {
-                    commentsResults.map((item, index) => {
-                        let status = item.publish_status;
+                        <input 
+                            id = {params._id}
+                            type = "text"
+                            placeholder = "New comment here!"
+                            onChange = {(e) => {
+                                setComment(e.target.value);
+                                setCommentPostId(e.target.id);
+                            }}
+                        >
+                        
+                        </input>
+                        <button onClick = {handleCommentSubmit}>
+                            Submit comment!
+                        </button>
+                    </form>
+                    {
+                        commentsResults.map((item, index) => {
+                            let status = item.publish_status;
 
-                        
-                        return (
                             
-                            <div key = {index} id = {item._id}>
-                                <h3> New Comment </h3> 
-                                <p> {item._id} </p> 
-                                <p> {item.text} </p>
-                            </div>
-                        )
-                        
-                    })
-                }
-                <button onClick = {handleSubmit}>
-                    Check results
-                </button>
+                            return (
+                                
+                                <div className = 'comments' key = {index} id = {item._id}>
+                                    <h3> New Comment </h3> 
+                                
+                                    <p> {item.text} </p>
+                                </div>
+                            )
+                            
+                        })
+                    }
+                </div>
+                
             </div>
 
             

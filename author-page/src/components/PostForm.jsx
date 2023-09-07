@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {Link} from  'react-router-dom';
+import './css/comment-form.css';
 
 function PostForm(){
     const [title, setTitle] = useState('');
@@ -35,28 +36,34 @@ function PostForm(){
 
     return (
         <div>
-            Form to create a new post
+            <h1 className = 'formTitle'> Form to create a new post </h1>
             <br/>
-            <form>
-                <label>
-                    Title
-                    <input 
-                        type = "text"
-                        placeholder = "Title of post"
-                        onChange = {(e) => {
-                            setTitle(e.target.value);
-                        }}    
-                    />
-                        
-                    
+            <form className = 'formWrapper'>
+                <div>
 
-                </label>
+                
+                    <label className = 'formLabel'>
+                        
+                        <input 
+                            type = "text"
+                            placeholder = "Title of post"
+                            className = 'formTitle'
+                            onChange = {(e) => {
+                                setTitle(e.target.value);
+                            }}    
+                        />
+                            
+                        
+
+                    </label>
+                </div>
                 <br/>
 
-                <label>
-                    Content
+                <label className = 'formLabel'>
+                    
                     <input 
                         type = "text"
+                        className = 'formBody'
                         placeholder = "Content body"
                         onChange = {(e) => {
                             setContent(e.target.value);
@@ -66,8 +73,8 @@ function PostForm(){
 
 
                 </label>
-
-                <button onClick = {handleSubmit}>
+                <br></br>
+                <button className = 'formSubmit' onClick = {handleSubmit}>
                     Submit post
                 </button>
             </form>

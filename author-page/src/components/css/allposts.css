@@ -3,13 +3,30 @@
     padding:0;
     box-sizing: border-box;
     font-family: sans-serif;
+    
 }
 
 .postItem{
-    background-color: blue;
+    background: transparent;
+    backdrop-filter:blur(20px);
     border: 2px solid white;
     margin:20px;
     width:80rem;
     height: 150px;;
-    
+    color: #fff;
+    padding: 25px
+}
+
+.postTitle{
+    color:#fff;
+    margin-bottom:10px;
+   
+}
+
+.mainTitle{
+    color:#fff;
+}
+
+.postLink{
+    text-decoration: none;
 }

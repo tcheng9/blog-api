@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {Link} from 'react-router-dom';
-
+import './css/manageposts.css';
 function ManagePosts(){
     const [posts, setPosts] = useState([]);
     const [postId, setPostId] = useState('');

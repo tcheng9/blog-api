@@ -64,7 +64,7 @@ function Posts(){
 
     return (
         <div>
-            <h1> All posts</h1>
+            <h1 className = 'mainTitle'> All posts</h1>
             <div>
                 {
                     posts.map((item, index) => {
@@ -84,7 +84,7 @@ function Posts(){
 
                                     
                                     <h1 className = 'postTitle'> 
-                                        <Link to = {`/posts/${item._id}`}> {item.title} </Link>
+                                        <Link to = {`/posts/${item._id}`} className = "postLink"> {item.title} </Link>
                                     
                                     </h1>
                                     <p className = 'postText'> {item.text.substring(0, max_substring)} </p>

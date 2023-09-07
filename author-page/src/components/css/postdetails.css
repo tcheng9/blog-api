@@ -6,9 +6,36 @@
 }
 
 .postSection{
-    background-color: green;
+    
+    background: transparent;
+    backdrop-filter:blur(20px);
+    border: 2px solid black;
+    margin:20px;
+    width:80vw;
+    height: 150px;;
+    color: #fff;
+    padding: 25px;
+    color:black;
 }
 
 .commentsSection{
-    background-color: skyblue;
+    background: transparent;
+    backdrop-filter:blur(20px);
+    border: 2px solid black;
+    margin:20px;
+    width:60vw;
+    
+    color: #fff;
+    padding: 25px;
+    text-align: center;
+}
+
+.commentsCenter{
+    margin:auto;
+}
+
+.comments{
+    border: 2px solid black;
+    margin:20px;
+    color:black;
 }
