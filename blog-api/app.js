@@ -109,7 +109,7 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-var PORT = 3000;
+var PORT = 8080;
 
 app.listen(PORT, function(err){
   if (err) console.log('error in server setup');

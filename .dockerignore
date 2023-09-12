@@ -1,0 +1,80 @@
+# flyctl launch added from author-page/.gitignore
+# Logs
+author-page/**/logs
+author-page/**/*.log
+author-page/**/npm-debug.log*
+author-page/**/yarn-debug.log*
+author-page/**/yarn-error.log*
+author-page/**/pnpm-debug.log*
+author-page/**/lerna-debug.log*
+
+author-page/**/node_modules
+author-page/**/dist
+author-page/**/dist-ssr
+author-page/**/*.local
+
+# Editor directories and files
+author-page/**/.vscode/*
+!author-page/**/.vscode/extensions.json
+author-page/**/.idea
+author-page/**/.DS_Store
+author-page/**/*.suo
+author-page/**/*.ntvs*
+author-page/**/*.njsproj
+author-page/**/*.sln
+author-page/**/*.sw?
+
+# flyctl launch added from blog-api/.gitignore
+blog-api/**/node_modules
+blog-api/**/.env
+
+# flyctl launch added from website-1/.gitignore
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+website-1/node_modules
+website-1/.pnp
+website-1/**/.pnp.js
+
+# testing
+website-1/coverage
+
+# production
+website-1/build
+
+# misc
+website-1/**/.DS_Store
+website-1/**/.env.local
+website-1/**/.env.development.local
+website-1/**/.env.test.local
+website-1/**/.env.production.local
+
+website-1/**/npm-debug.log*
+website-1/**/yarn-debug.log*
+website-1/**/yarn-error.log*
+
+# flyctl launch added from website-author/.gitignore
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+website-author/node_modules
+website-author/.pnp
+website-author/**/.pnp.js
+
+# testing
+website-author/coverage
+
+# production
+website-author/build
+
+# misc
+website-author/**/.DS_Store
+website-author/**/.env.local
+website-author/**/.env.development.local
+website-author/**/.env.test.local
+website-author/**/.env.production.local
+
+website-author/**/npm-debug.log*
+website-author/**/yarn-debug.log*
+website-author/**/yarn-error.log*
+fly.toml
