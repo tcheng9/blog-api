@@ -1,9 +1,9 @@
-# fly.toml app configuration file generated for tom-blog-app-1 on 2023-09-11T14:57:15-05:00
+# fly.toml app configuration file generated for snowy-sunset-6320 on 2023-09-11T22:28:10-05:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
-app = "tom-blog-app-1"
+app = "snowy-sunset-6320"
 primary_region = "ord"
 
 [build]
