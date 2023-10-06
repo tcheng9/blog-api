@@ -67,7 +67,7 @@ function ManagePosts(){
     }
     
     
-
+    //function to show post if the corresponidng post show boolean is matched 
     const showPostButton = (e) => {
         //Use this button to show a post
         e.preventDefault();
@@ -80,7 +80,7 @@ function ManagePosts(){
         window.location.reload(false);
         
     }
-
+    //function to hide post if the corresponidng post show boolean is matched 
     const hidePostButton = (e) => {
         //Use this button to hide a post
         e.preventDefault();

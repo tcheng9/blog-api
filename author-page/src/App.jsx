@@ -17,8 +17,8 @@ function App() {
 
     
       <div>
-        
-          <Routes>              
+          <HashRouter basename = "/">
+             <Routes>              
           
                 <Route path = "/posts" element = {<Posts/>} />
                 <Route path = "/" element = {<Home/>} />
@@ -29,6 +29,8 @@ function App() {
                 <Route path = "/posts/:id" element = {<PostDetails/>}/>
             </Routes>
       
+          </HashRouter>
+         
           
          
       

@@ -93,7 +93,7 @@ function PostDetails(){
         
         
     }
-  
+  //Function to run fetch api call
     const commentsCall = () => {
        
         fetch('http://localhost:3000/comment', {
