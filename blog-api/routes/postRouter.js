@@ -6,7 +6,7 @@ var async = require('async');
 const jwt = require('jsonwebtoken');
 
 /* GET home page */
-router.get('/', authenticateToken, async function(req, res, next){
+router.get('/', async function(req, res, next){
     try {
         const posts = await Post.find();
         res.json(posts);
@@ -77,7 +77,7 @@ router.patch('/:id',authenticateToken,  getPost, async (req, res) => {
 /* DELETE A POST */
 router.delete('/:id',authenticateToken, getPost, async (req, res) => {
     try{
-        await res.post.remove();
+        await res.post.remove(); // Q: wouldn't this delete all posts?
         res.json({message: "Deleted Post"});
     } catch (err){
         res.status(500).json({message: err.message});

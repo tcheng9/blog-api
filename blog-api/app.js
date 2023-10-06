@@ -14,10 +14,11 @@ const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const Scehma = mongoose.Schema;
 const User = require('./models/user');
-const session = require("express-session");
+const session = require("cookie-session");
 var authRouter = require('./routes/authRouter')
 const bcrypt = require('bcrypt');
 const cors = require("cors");
+const MemoryStore = require('memorystore')(session)
 
 var app = express();
 
@@ -61,8 +62,8 @@ passport.deserializeUser(function(id, done) {
 
 
 /////////MONGO DB SETUP
-const mongoPw = process.env.MONGOPW;
-
+// const mongoPw = process.env.MONGOPW;
+const mongoPw = "mongo"
 const mongoDb = "mongodb+srv://tcheng:" + mongoPw + "@cluster0.c17ee5l.mongodb.net/?retryWrites=true&w=majority";
 mongoose.connect(mongoDb, { useUnifiedTopology: true, useNewUrlParser: true });
 const db = mongoose.connection;
@@ -73,7 +74,14 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 //Passport setup code
-app.use(session({ secret: "cats", resave: false, saveUninitialized: true }));
+app.use(session({ 
+  cookie: { maxAge: 86400000 },
+    store: new MemoryStore({
+      checkPeriod: 86400000 // prune expired entries every 24h
+    }),
+    resave: false,
+    secret: 'keyboard cat'
+}));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.urlencoded({ extended: false }));
@@ -111,7 +119,7 @@ app.use(function(err, req, res, next) {
 
 var PORT = 8080;
 
-app.listen(PORT, function(err){
+app.listen({port: PORT, host: "0.0.0.0"}, function(err){
   if (err) console.log('error in server setup');
   console.log('Server listening on port', PORT)
 })
