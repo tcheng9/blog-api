@@ -1,9 +1,9 @@
-# fly.toml app configuration file generated for patient-dawn-8738 on 2023-09-29T00:04:19-05:00
+# fly.toml app configuration file generated for blog-api-deploy-1 on 2023-10-06T13:26:26-05:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
-app = "patient-dawn-8738"
+app = "blog-api-deploy-1"
 primary_region = "ord"
 
 [build]

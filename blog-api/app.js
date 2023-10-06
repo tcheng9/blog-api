@@ -18,7 +18,6 @@ const session = require("cookie-session");
 var authRouter = require('./routes/authRouter')
 const bcrypt = require('bcrypt');
 const cors = require("cors");
-const MemoryStore = require('memorystore')(session)
 
 var app = express();
 
@@ -76,9 +75,7 @@ app.set('view engine', 'ejs');
 //Passport setup code
 app.use(session({ 
   cookie: { maxAge: 86400000 },
-    store: new MemoryStore({
-      checkPeriod: 86400000 // prune expired entries every 24h
-    }),
+    
     resave: false,
     secret: 'keyboard cat'
 }));
