@@ -18,7 +18,7 @@ function Login(){
     }
 
     const postLoginDetails = () => {
-        fetch('http://localhost:3000/auth/login', {
+        fetch('https://blog-api-deploy-1.fly.dev/auth/login', {
             method: "POST",
             body: JSON.stringify({
                 username,

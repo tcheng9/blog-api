@@ -16,7 +16,7 @@ function Signup(){
     }
 
     const postSignUpDetails = () => {
-        fetch('http://localhost:3000/auth/signup', {
+        fetch('https://blog-api-deploy-1.fly.dev/auth/signup', {
             method:"POST",
             body: JSON.stringify({
                 username,

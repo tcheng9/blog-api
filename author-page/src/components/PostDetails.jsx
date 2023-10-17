@@ -12,14 +12,14 @@ function PostDetails(){
     const params = useParams();
     let postId = params.id;
     let token = localStorage.getItem('accessToken');
-    let getPostFetch = fetch(`http://localhost:3000/post/${postId}`, {
+    let getPostFetch = fetch(`https://blog-api-deploy-1.fly.dev/post/${postId}`, {
         method: 'GET',
         headers: {
             'Authorization': 'Bearer ' + token
         }
     })
 
-    let getCommentsFetch = fetch(`http://localhost:3000/comment/match/${postId}`, {
+    let getCommentsFetch = fetch(`https://blog-api-deploy-1.fly.dev/comment/match/${postId}`, {
         method:'GET',
         headers:{
             'Authorization': 'Bearer ' + token
@@ -29,7 +29,7 @@ function PostDetails(){
 
     //trying to call each fetch independent of each other
     useEffect(() => {
-        fetch(`http://localhost:3000/post/${postId}`, {
+        fetch(`https://blog-api-deploy-1.fly.dev/post/${postId}`, {
             method: 'GET',
             headers: {
                 'Authorization': 'Bearer ' + token
@@ -43,7 +43,7 @@ function PostDetails(){
             console.log(postResults);
         })
 
-        fetch(`http://localhost:3000/comment/match/${postId}`, {
+        fetch(`https://blog-api-deploy-1.fly.dev/comment/match/${postId}`, {
             method:'GET',
             headers:{
                 'Authorization': 'Bearer ' + token
@@ -67,14 +67,14 @@ function PostDetails(){
     }
 
     //Testing Promise.All()
-    let fetch1 = fetch('http://localhost:3000/post', {
+    let fetch1 = fetch('https://blog-api-deploy-1.fly.dev/post', {
             
             method:"GET",
             headers: {
                 'Authorization': "Bearer " + token
             }
         });
-    let fetch2 = fetch('http://localhost:3000/post', {
+    let fetch2 = fetch('https://blog-api-deploy-1.fly.dev/post', {
             
             method:"GET",
             headers: {
@@ -96,7 +96,7 @@ function PostDetails(){
   //Function to run fetch api call
     const commentsCall = () => {
        
-        fetch('http://localhost:3000/comment', {
+        fetch('https://blog-api-deploy-1.fly.dev/comment', {
             method: 'POST',
             headers: {
                 'Authorization': 'Bearer ' + token,

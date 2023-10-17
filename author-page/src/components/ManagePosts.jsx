@@ -9,7 +9,7 @@ function ManagePosts(){
     let newPublishStatus;
     useEffect(()=> {
     
-        fetch('http://localhost:3000/post', {
+        fetch('https://blog-api-deploy-1.fly.dev/post', {
             
             method:"GET",
             headers: {
@@ -40,7 +40,7 @@ function ManagePosts(){
     
     function showPost(id){
         //funtion to show the post -> publish_status = true
-        fetch(`http://localhost:3000/post/` + id, {
+        fetch(`https://blog-api-deploy-1.fly.dev/post/` + id, {
             method: 'PATCH',
             headers: {
                 'Authorization': 'Bearer ' + token,
@@ -54,7 +54,7 @@ function ManagePosts(){
 
     function hidePost(id){
         //funtion to hide the post -> publish_status = false
-        fetch(`http://localhost:3000/post/` + id, {
+        fetch(`https://blog-api-deploy-1.fly.dev/post/` + id, {
             method: 'PATCH',
             headers: {
                 'Authorization': 'Bearer ' + token,

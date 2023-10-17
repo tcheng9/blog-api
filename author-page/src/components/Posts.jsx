@@ -18,7 +18,7 @@ function Posts(){
     //ORIGINAL USEEFFECT
     useEffect(()=> {
     
-        fetch('http://localhost:3000/post', {
+        fetch('https://blog-api-deploy-1.fly.dev/post', {
             
             method:"GET",
             headers: {
@@ -49,7 +49,7 @@ function Posts(){
   
     const commentsCall = () => {
        
-        fetch('http://localhost:3000/comment', {
+        fetch('https://blog-api-deploy-1.fly.dev/comment', {
             method: 'POST',
             headers: {
                 'Authorization': 'Bearer ' + token,

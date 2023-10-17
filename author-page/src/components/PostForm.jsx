@@ -18,7 +18,7 @@ function PostForm(){
     const postCreation = () => {
         console.log('placeholder for now -- u clicked the submit button')
         let token = localStorage.getItem('accessToken');
-        fetch('http://localhost:3000/post', {
+        fetch('https://blog-api-deploy-1.fly.dev/post', {
             method: "POST",
             body: JSON.stringify({
                 'title': title,
